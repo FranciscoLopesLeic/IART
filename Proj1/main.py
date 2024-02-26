@@ -3,22 +3,29 @@ import pygame
 from pygame.locals import *
 from draw import *
 from utils import *
- 
+
 pygame.init()
- 
+
 fps = 60
 fpsClock = pygame.time.Clock()
- 
+
 width, height = 1280, 800
 screen = pygame.display.set_mode((width, height))
 
 screen_width, screen_height = screen.get_size()
 
-#Button Start Pos
+class GameState:
+    MAIN_MENU = "main_menu"
+    OPTIONS_MENU = "options_menu"
+    CREDITS_SCREEN = "credits_screen"
+
+current_state = GameState.MAIN_MENU
+
+# Variáveis para o menu principal
 button_start_width = 400
 button_start_height = 100
 x_button_start = (screen_width - button_start_width) // 2
-y_button_start = ((screen_height - button_start_height) // 2) -50
+y_button_start = ((screen_height - button_start_height) // 2) - 50
 
 button_options_width = 400
 button_options_height = 100
@@ -30,49 +37,89 @@ button_quit_height = 100
 x_button_quit = (screen_width - button_quit_width) // 2
 y_button_quit = ((screen_height - button_quit_height) // 2) + 200
 
-button_start = Button(x_button_start, y_button_start, button_start_width, button_start_height, "Start", (125,0,150),(0,0,0),60)
-button_quit = Button(x_button_quit, y_button_quit, button_quit_width, button_quit_height, "Quit", (255, 0, 100), (255, 255, 255), 60)
-button_options = Button(x_button_options, y_button_options, button_options_width, button_options_height, "Options", (0, 0, 255), (255, 255, 255), 60)
+button_start = Button(x_button_start, y_button_start, button_start_width, button_start_height, "Start", (125, 0, 150), (0, 0, 0), 60)
+button_options = Button(x_button_options, y_button_options, button_options_width, button_options_height, "Options", (0, 80, 255), (255, 255, 255), 60)
+button_quit = Button(x_button_quit, y_button_quit, button_quit_width, button_quit_height, "Quit", (255, 40, 100), (255, 255, 255), 60)
 
-# Game loop.
+# Variáveis para o menu de opções
+button_controls_width = 400
+button_controls_height = 100
+x_button_controls = (screen_width - button_controls_width) // 2
+y_button_controls = ((screen_height - button_controls_height) // 2) - 50
+
+button_credits_width = 400
+button_credits_height = 100
+x_button_credits = (screen_width - button_credits_width) // 2
+y_button_credits = ((screen_height - button_credits_height) // 2) + 75
+
+button_return_width = 400
+button_return_height = 100
+x_button_return = (screen_width - button_return_width) // 2
+y_button_return = ((screen_height - button_return_height) // 2) + 200
+
+button_controls = Button(x_button_controls, y_button_controls, button_controls_width, button_controls_height, "Controls", (0, 80, 255), (0, 0, 0), 60)
+button_credits = Button(x_button_credits, y_button_credits, button_credits_width, button_credits_height, "Credits", (0, 80, 255), (255, 255, 255), 60)
+button_return = Button(x_button_return, y_button_return, button_return_width, button_return_height, "Return", (0, 80, 255), (255, 255, 255), 60)
+
 while True:
-  # Draw Main Menu
-  draw_main_menu(screen) 
-  
-  for event in pygame.event.get():
-    if event.type == QUIT:
-      pygame.quit()
-      sys.exit()
-    elif event.type  == MOUSEBUTTONDOWN:
-        if button_start.is_clicked(pygame.mouse.get_pos()):
+    # Draw Main Menu
+    draw_main_menu(screen)
+
+    for event in pygame.event.get():
+        if event.type == QUIT:
             pygame.quit()
             sys.exit()
-        elif button_options.is_clicked(pygame.mouse.get_pos()):
-            while True:
-                draw_options_menu(screen)
-                for event in pygame.event.get():
-                    if event.type == QUIT:
-                        pygame.quit()
-                        sys.exit()
-                    elif event.type  == MOUSEBUTTONDOWN:
-                        if button_start.is_clicked(pygame.mouse.get_pos()):
-                            pygame.quit()
-                            sys.exit()
-                        elif button_options.is_clicked(pygame.mouse.get_pos()):
-                            pygame.quit()
-                            sys.exit()
-        elif button_quit.is_clicked(pygame.mouse.get_pos()):
+        elif event.type == MOUSEBUTTONDOWN:
+            if button_start.is_clicked(pygame.mouse.get_pos()):
+                pygame.quit()
+                sys.exit()
+            elif button_options.is_clicked(pygame.mouse.get_pos()):
+                current_state = GameState.OPTIONS_MENU
+            elif button_credits.is_clicked(pygame.mouse.get_pos()):
+                current_state = GameState.CREDITS_SCREEN
+            elif button_quit.is_clicked(pygame.mouse.get_pos()):
                 pygame.quit()
                 sys.exit()
 
+    if current_state == GameState.OPTIONS_MENU:
+        draw_options_menu(screen)
 
-  # Update.
-  
-  # Draw.
-  button_start.draw(screen)
-  button_quit.draw(screen)
-  button_options.draw(screen)
-  
-  pygame.display.flip()
-  fpsClock.tick(fps)
+        for event in pygame.event.get():
+            if event.type == QUIT:
+                pygame.quit()
+                sys.exit()
+            elif event.type == MOUSEBUTTONDOWN:
+                if button_controls.is_clicked(pygame.mouse.get_pos()):
+                    current_state = GameState.MAIN_MENU
+                elif button_credits.is_clicked(pygame.mouse.get_pos()):
+                    current_state = GameState.MAIN_MENU
+                elif button_return.is_clicked(pygame.mouse.get_pos()):
+                    current_state = GameState.MAIN_MENU
 
+        pygame.display.flip()
+        fpsClock.tick(fps)
+        continue
+
+    elif current_state == GameState.CREDITS_SCREEN:
+        draw_credits_screen(screen, screen_width)
+
+        for event in pygame.event.get():
+            if event.type == QUIT:
+                pygame.quit()
+                sys.exit()
+            elif event.type == MOUSEBUTTONDOWN:
+                current_state = GameState.MAIN_MENU  # Voltar para o menu principal ao clicar na tela de créditos
+
+        pygame.display.flip()
+        fpsClock.tick(fps)
+        continue
+
+    # Update.
+    # Draw.
+    button_start.draw(screen)
+    button_quit.draw(screen)
+    button_options.draw(screen)
+    button_credits.draw(screen)
+
+    pygame.display.flip()
+    fpsClock.tick(fps)

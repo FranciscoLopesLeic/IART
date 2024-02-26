@@ -1,6 +1,7 @@
 import os
 import pygame
 from pygame.locals import *
+from utils import Button
 
 def draw_main_menu(screen):
     screen.fill((95, 158, 160))
@@ -20,15 +21,15 @@ def draw_main_menu(screen):
 
     x = (screen_width - image_width) // 2
     y = ((screen_height - image_height) // 2) - 200
-    screen.blit(scaled_image,(x,y))
+    screen.blit(scaled_image,(x, y))
 
 
 def draw_options_menu(screen):
-    screen.fill((173, 216, 230))  # Cor de fundo para o menu de opções
+    screen.fill((95, 158, 160))  # Cor de fundo para o menu de opções
 
     # Title - Load, Scale and Position
     directory = os.path.dirname(__file__)
-    image_path = os.path.join(directory, 'images', "options_title.png")
+    image_path = os.path.join(directory, 'images', "title.png")
     img = pygame.image.load(image_path)
 
     img_width, img_height = img.get_size()
@@ -45,13 +46,36 @@ def draw_options_menu(screen):
 
     # Adicione outros elementos do menu de opções conforme necessário
     # Exemplo: Botões para ajustar configurações
-    draw_option_button(screen, "Volume", 200, 300)
-    draw_option_button(screen, "Controls", 200, 400)
+    draw_option_button(screen, "Controls", 200, 300)
+    draw_option_button(screen, "Credits", 200, 425)
+    draw_option_button(screen, "Return", 200, 550)
+
 
 def draw_option_button(screen, text, x, y):
     # Configurações para os botões de opção
     option_button_width = 400
     option_button_height = 100
 
-    option_button = Button(x, y, option_button_width, option_button_height, text, (255, 0, 100), (255, 255, 255), 40)
+    option_button = Button(x * 2.2, y, option_button_width, option_button_height, text, (0, 80, 255), (255, 255, 255), 60)
     option_button.draw(screen)
+
+
+def draw_credits_screen(screen, screen_width):
+    screen.fill((95, 158, 160))  # Cor de fundo para a tela de créditos
+
+    # Adicione elementos da tela de créditos
+    font = pygame.font.SysFont(None, 55)
+    credits_text = [
+        "Game Developed by:",
+        "Francisco Lopes",
+        "João Fernandes",
+        "Rui Silveira"
+    ]
+
+    # Desenha o texto de créditos na tela
+    y = 200
+    for line in credits_text:
+        text = font.render(line, True, (255, 255, 255))
+        text_rect = text.get_rect(center=(screen_width // 2, y))
+        screen.blit(text, text_rect)
+        y += 60
