@@ -3,6 +3,9 @@ import pygame
 from pygame.locals import *
 from draw import *
 from utils import *
+from levels import level_1, level_2, level_3
+from typing import Dict, List
+from game import Game
 
 pygame.init()
 
@@ -69,17 +72,27 @@ while True:
         if event.type == QUIT:
             pygame.quit()
             sys.exit()
-        elif event.type == MOUSEBUTTONDOWN:
+        elif event.type == MOUSEBUTTONDOWN:   
             if button_start.is_clicked(pygame.mouse.get_pos()):
-                pygame.quit()
-                sys.exit()
-            elif button_options.is_clicked(pygame.mouse.get_pos()):
-                current_state = GameState.OPTIONS_MENU
-            elif button_credits.is_clicked(pygame.mouse.get_pos()):
-                current_state = GameState.CREDITS_SCREEN
-            elif button_quit.is_clicked(pygame.mouse.get_pos()):
-                pygame.quit()
-                sys.exit()
+                current_state = GameState.PLAYING
+                if current_state == GameState.PLAYING:
+                    # Lógica do jogo
+                    # Você pode usar level_1["initial_state"] e level_1["objective_state"] para configurar o estado inicial e objetivo do nível
+
+                    # Exemplo:
+                    current_level: Dict[str, List[List[str]]] = level_1  # Escolha o nível atual
+                    initial_state = current_level["initial_state"]
+                    objective_state = current_level["objective_state"]
+                    game = Game(initial_state, objective_state)
+                    game.run(screen, screen_width, screen_height)
+
+        elif button_options.is_clicked(pygame.mouse.get_pos()):
+            current_state = GameState.OPTIONS_MENU
+        elif button_credits.is_clicked(pygame.mouse.get_pos()):
+            current_state = GameState.CREDITS_SCREEN
+        elif button_quit.is_clicked(pygame.mouse.get_pos()):
+            pygame.quit()
+            sys.exit()
 
     if current_state == GameState.OPTIONS_MENU:
         draw_options_menu(screen)
