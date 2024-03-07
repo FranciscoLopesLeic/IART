@@ -13,7 +13,7 @@ fps = 60
 fpsClock = pygame.time.Clock()
 
 width, height = 1280, 800
-screen = pygame.display.set_mode((width, height))
+screen = pygame.display.set_mode((width, height),NOFRAME)
 
 screen_width, screen_height = screen.get_size()
 
@@ -23,7 +23,7 @@ class GameState:
     CREDITS_SCREEN = "credits_screen"
     PLAYING = "Interface"
 
-current_state = GameState.MAIN_MENU
+
 
 # Variáveis para o menu principal
 button_start_width = 400
@@ -64,52 +64,122 @@ y_button_return = ((screen_height - button_return_height) // 2) + 200
 button_controls = Button(x_button_controls, y_button_controls, button_controls_width, button_controls_height, "Controls", (0, 80, 255), (0, 0, 0), 60)
 button_credits = Button(x_button_credits, y_button_credits, button_credits_width, button_credits_height, "Credits", (0, 80, 255), (255, 255, 255), 60)
 button_return = Button(x_button_return, y_button_return, button_return_width, button_return_height, "Return", (0, 80, 255), (255, 255, 255), 60)
+
+
+
+
 draw_main_menu(screen)
-while True:
+
+def main_menu_loop(screen):
+    current_state = GameState.MAIN_MENU
+    while True:
     # Draw Main Menu
     
 
-    for event in pygame.event.get():
-        if event.type == QUIT:
-            pygame.quit()
-            sys.exit()
-        elif event.type == MOUSEBUTTONDOWN:   
-            if button_start.is_clicked(pygame.mouse.get_pos()):
-                current_state = GameState.PLAYING
-                """if current_state == GameState.PLAYING:
-                    # Lógica do jogo
-                    # Você pode usar level_1["initial_state"] e level_1["objective_state"] para configurar o estado inicial e objetivo do nível
-
-                    # Exemplo:
-                    current_level: Dict[str, List[List[str]]] = beginner_1  # Escolha o nível atual
-                    initial_state = current_level["initial_state"]
-                    objective_state = current_level["objective_state"]
-                    game = Game(initial_state, objective_state)
-                    game.run(screen, screen_width, screen_height)"""
-
-            elif button_options.is_clicked(pygame.mouse.get_pos()):
-                current_state = GameState.OPTIONS_MENU
-            elif button_credits.is_clicked(pygame.mouse.get_pos()):
-                current_state = GameState.CREDITS_SCREEN
-            elif button_quit.is_clicked(pygame.mouse.get_pos()):
+        for event in pygame.event.get():
+            if event.type == QUIT:
                 pygame.quit()
                 sys.exit()
+            elif event.type == MOUSEBUTTONDOWN:   
+                if button_start.is_clicked(pygame.mouse.get_pos()):
+                    current_state = GameState.PLAYING
+                    """if current_state == GameState.PLAYING:
+                        # Lógica do jogo
+                        # Você pode usar level_1["initial_state"] e level_1["objective_state"] para configurar o estado inicial e objetivo do nível
 
-    if current_state == GameState.OPTIONS_MENU:
-        draw_options_menu(screen)
+                        # Exemplo:
+                        current_level: Dict[str, List[List[str]]] = beginner_1  # Escolha o nível atual
+                        initial_state = current_level["initial_state"]
+                        objective_state = current_level["objective_state"]
+                        game = Game(initial_state, objective_state)
+                        game.run(screen, screen_width, screen_height)"""
 
-    elif current_state == GameState.CREDITS_SCREEN:
-        draw_credits_screen(screen, screen_width)
-        
-    elif current_state == GameState.PLAYING:
-        draw_level_select_menu(screen)
+                elif button_options.is_clicked(pygame.mouse.get_pos()):
+                    current_state = GameState.OPTIONS_MENU
+                elif button_credits.is_clicked(pygame.mouse.get_pos()):
+                    current_state = GameState.CREDITS_SCREEN
+                elif button_quit.is_clicked(pygame.mouse.get_pos()):
+                    pygame.quit()
+                    sys.exit()
 
-    elif current_state == GameState.MAIN_MENU:
-        draw_main_menu(screen)
-        button_start.draw(screen)
-        button_quit.draw(screen)
-        button_options.draw(screen)
-        # Voltar para o menu principal ao clicar na tela de créditos
+        if current_state == GameState.OPTIONS_MENU:
+            draw_options_menu(screen)
 
-    pygame.display.flip()
-    fpsClock.tick(fps)
+        elif current_state == GameState.CREDITS_SCREEN:
+            draw_credits_screen(screen, screen_width)
+            
+        elif current_state == GameState.PLAYING:
+            print("here")
+            level_menu_loop(screen)
+
+        elif current_state == GameState.MAIN_MENU:
+            draw_main_menu(screen)
+            button_start.draw(screen)
+            button_quit.draw(screen)
+            button_options.draw(screen)
+            # Voltar para o menu principal ao clicar na tela de créditos
+
+        pygame.display.flip()
+        fpsClock.tick(fps)
+
+def level_menu_loop(screen):
+    draw_level_select_menu(screen)
+    min_y = 30 + 140
+    min_x = 30 + ((screen_width-30-300)/4)
+    x_increment = ((screen_width-30-300)/4)
+    y_increment = (screen_height - min_y - 30-300)/4 
+    x = min_x
+    levels = [0]*9
+    for i in range(0,3):
+        y = min_y
+        for j in range(1,4):
+            levels[j+(i*3)-1] = Button(x, y, 100, 100, str(j+(i*3)), (0,0,0), (255, 255, 255), 80)
+            levels[j+(i*3)-1].draw(screen)
+            y+=y_increment+100
+        x += x_increment+100
+    while True:
+        for event in pygame.event.get():
+            if event.type == QUIT:
+                pygame.quit()
+                sys.exit()
+            elif event.type == MOUSEBUTTONDOWN:   
+                if levels[0].is_clicked(pygame.mouse.get_pos()):
+                    print("1")
+                elif levels[1].is_clicked(pygame.mouse.get_pos()):
+                    print("2")
+                elif levels[2].is_clicked(pygame.mouse.get_pos()):
+                    print("3")
+                elif levels[3].is_clicked(pygame.mouse.get_pos()):
+                    print("4")
+                elif levels[4].is_clicked(pygame.mouse.get_pos()):
+                    print("5")
+                elif levels[5].is_clicked(pygame.mouse.get_pos()):
+                    print("6")
+                elif levels[6].is_clicked(pygame.mouse.get_pos()):
+                    print("7")
+                elif levels[7].is_clicked(pygame.mouse.get_pos()):
+                    print("8")
+                elif levels[8].is_clicked(pygame.mouse.get_pos()):
+                    print("9")
+            elif event.type == VIDEORESIZE or event.type == VIDEOEXPOSE:
+
+                ## TODO: NAO FUNCIONA, perguntar ao prof se deve suportar isto
+                draw_level_select_menu(screen)
+                print("hellyeah")
+                screen_width_new, screen_height_new = screen.get_size()
+                min_y = 30 + 140
+                min_x = 30 + ((screen_width_new-30-300)/4)
+                x_increment = ((screen_width_new-30-300)/4)
+                y_increment = (screen_height_new - min_y - 30-300)/4 
+                x = min_x
+                for i in range(0,3):
+                    y = min_y
+                    for j in range(1,4):
+                        levels[j+(i*3)-1] = Button(x, y, 100, 100, str(j+(i*3)), (0,0,0), (255, 255, 255), 80)
+                        levels[j+(i*3)-1].draw(screen)
+                        y+=y_increment+100
+                    x += x_increment+100
+        pygame.display.flip()
+        fpsClock.tick(fps)
+
+main_menu_loop(screen) 

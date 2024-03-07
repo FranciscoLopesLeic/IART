@@ -31,17 +31,6 @@ def draw_level_select_menu(screen):
     pygame.draw.rect(screen, (0,0,0), pygame.Rect(30, 30, screen_width-60, screen_height-60))
 
     # To draw the level buttons, as they are 9, lets create a 3x3 grid
-    
-    min_y = 30 + 15 + 100 + 30 + 100 + 30
-    min_x = 30 + ((screen_width-30-300)/4)
-    x_increment = ((screen_width-30-300)/4)
-    y_increment = screen_height 
-    y = min_y
-    for i in range(0,3):
-        x = min_x
-        for j in range(1,4):
-            draw_level_button(screen,str(j+(i*3)),x,y)
-        y += y_increment+100
 
 def draw_level_button(screen,text,x,y):
     level_button_width = 100
