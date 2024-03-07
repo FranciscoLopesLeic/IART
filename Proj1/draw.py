@@ -23,6 +23,32 @@ def draw_main_menu(screen):
     y = ((screen_height - image_height) // 2) - 200
     screen.blit(scaled_image,(x, y))
 
+def draw_level_select_menu(screen):
+    screen.fill((95, 158, 160))  # Cor de fundo para o menu de opções
+
+    screen_width, screen_height = screen.get_size()
+
+    pygame.draw.rect(screen, (0,0,0), pygame.Rect(30, 30, screen_width-60, screen_height-60))
+
+    # To draw the level buttons, as they are 9, lets create a 3x3 grid
+    
+    min_y = 30 + 15 + 100 + 30 + 100 + 30
+    min_x = 30 + ((screen_width-30-300)/4)
+    x_increment = ((screen_width-30-300)/4)
+    y_increment = screen_height 
+    y = min_y
+    for i in range(0,3):
+        x = min_x
+        for j in range(1,4):
+            draw_level_button(screen,str(j+(i*3)),x,y)
+        y += y_increment+100
+
+def draw_level_button(screen,text,x,y):
+    level_button_width = 100
+    level_button_height = 100
+
+    level_button = Button(x , y, level_button_width, level_button_height, text, (0, 0, 0), (255, 255, 255), 80)
+    level_button.draw(screen)
 
 def draw_options_menu(screen):
     screen.fill((95, 158, 160))  # Cor de fundo para o menu de opções

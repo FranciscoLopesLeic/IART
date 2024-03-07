@@ -1,5 +1,6 @@
 from collections import deque
 import heapq
+from gamelogic import *
 
 
 # TreeNode modelo
@@ -126,7 +127,7 @@ def greedy_search(problem, heuristic):
     # problem (NPuzzleState) - the initial state
     # heuristic (function) - the heuristic function that takes a board (matrix), and returns an integer
     # Mudar o NPuzzle
-    setattr(NPuzzleState, "__lt__", lambda self, other: heuristic(self) < heuristic(other))
+    setattr(Cogito, "__lt__", lambda self, other: heuristic(self) < heuristic(other))
     states = [problem]
     visited = set() # to not visit the same state twice
     current_state = problem

@@ -16,7 +16,7 @@ class Button:
         directory = os.path.dirname(__file__)
         font_path = os.path.join(directory, 'font', "RadiantKingdom-m5LeV.ttf")
         font = pygame.font.SysFont(font_path,self.font_size)
-        text = font.render(self.text, True, (0,0,0)) # Color is Black!
+        text = font.render(self.text, True, self.text_color) 
         text_rect = text.get_rect(center=self.rectangle.center)
         screen.blit(text, text_rect)
     

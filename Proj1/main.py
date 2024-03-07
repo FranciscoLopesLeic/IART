@@ -3,7 +3,7 @@ import pygame
 from pygame.locals import *
 from draw import *
 from utils import *
-from levels import level_1, level_2, level_3
+from levels import beginner_1
 from typing import Dict, List
 from game import Game
 
@@ -21,6 +21,7 @@ class GameState:
     MAIN_MENU = "main_menu"
     OPTIONS_MENU = "options_menu"
     CREDITS_SCREEN = "credits_screen"
+    PLAYING = "Interface"
 
 current_state = GameState.MAIN_MENU
 
@@ -63,10 +64,10 @@ y_button_return = ((screen_height - button_return_height) // 2) + 200
 button_controls = Button(x_button_controls, y_button_controls, button_controls_width, button_controls_height, "Controls", (0, 80, 255), (0, 0, 0), 60)
 button_credits = Button(x_button_credits, y_button_credits, button_credits_width, button_credits_height, "Credits", (0, 80, 255), (255, 255, 255), 60)
 button_return = Button(x_button_return, y_button_return, button_return_width, button_return_height, "Return", (0, 80, 255), (255, 255, 255), 60)
-
+draw_main_menu(screen)
 while True:
     # Draw Main Menu
-    draw_main_menu(screen)
+    
 
     for event in pygame.event.get():
         if event.type == QUIT:
@@ -75,64 +76,40 @@ while True:
         elif event.type == MOUSEBUTTONDOWN:   
             if button_start.is_clicked(pygame.mouse.get_pos()):
                 current_state = GameState.PLAYING
-                if current_state == GameState.PLAYING:
+                """if current_state == GameState.PLAYING:
                     # Lógica do jogo
                     # Você pode usar level_1["initial_state"] e level_1["objective_state"] para configurar o estado inicial e objetivo do nível
 
                     # Exemplo:
-                    current_level: Dict[str, List[List[str]]] = level_1  # Escolha o nível atual
+                    current_level: Dict[str, List[List[str]]] = beginner_1  # Escolha o nível atual
                     initial_state = current_level["initial_state"]
                     objective_state = current_level["objective_state"]
                     game = Game(initial_state, objective_state)
-                    game.run(screen, screen_width, screen_height)
+                    game.run(screen, screen_width, screen_height)"""
 
-        elif button_options.is_clicked(pygame.mouse.get_pos()):
-            current_state = GameState.OPTIONS_MENU
-        elif button_credits.is_clicked(pygame.mouse.get_pos()):
-            current_state = GameState.CREDITS_SCREEN
-        elif button_quit.is_clicked(pygame.mouse.get_pos()):
-            pygame.quit()
-            sys.exit()
+            elif button_options.is_clicked(pygame.mouse.get_pos()):
+                current_state = GameState.OPTIONS_MENU
+            elif button_credits.is_clicked(pygame.mouse.get_pos()):
+                current_state = GameState.CREDITS_SCREEN
+            elif button_quit.is_clicked(pygame.mouse.get_pos()):
+                pygame.quit()
+                sys.exit()
 
     if current_state == GameState.OPTIONS_MENU:
         draw_options_menu(screen)
 
-        for event in pygame.event.get():
-            if event.type == QUIT:
-                pygame.quit()
-                sys.exit()
-            elif event.type == MOUSEBUTTONDOWN:
-                if button_controls.is_clicked(pygame.mouse.get_pos()):
-                    current_state = GameState.MAIN_MENU
-                elif button_credits.is_clicked(pygame.mouse.get_pos()):
-                    current_state = GameState.MAIN_MENU
-                elif button_return.is_clicked(pygame.mouse.get_pos()):
-                    current_state = GameState.MAIN_MENU
-
-        pygame.display.flip()
-        fpsClock.tick(fps)
-        continue
-
     elif current_state == GameState.CREDITS_SCREEN:
         draw_credits_screen(screen, screen_width)
+        
+    elif current_state == GameState.PLAYING:
+        draw_level_select_menu(screen)
 
-        for event in pygame.event.get():
-            if event.type == QUIT:
-                pygame.quit()
-                sys.exit()
-            elif event.type == MOUSEBUTTONDOWN:
-                current_state = GameState.MAIN_MENU  # Voltar para o menu principal ao clicar na tela de créditos
-
-        pygame.display.flip()
-        fpsClock.tick(fps)
-        continue
-
-    # Update.
-    # Draw.
-    button_start.draw(screen)
-    button_quit.draw(screen)
-    button_options.draw(screen)
-    button_credits.draw(screen)
+    elif current_state == GameState.MAIN_MENU:
+        draw_main_menu(screen)
+        button_start.draw(screen)
+        button_quit.draw(screen)
+        button_options.draw(screen)
+        # Voltar para o menu principal ao clicar na tela de créditos
 
     pygame.display.flip()
     fpsClock.tick(fps)
