@@ -27,8 +27,10 @@ def draw_level_select_menu(screen):
     screen.fill((95, 158, 160))  # Cor de fundo para o menu de opções
 
     screen_width, screen_height = screen.get_size()
+    
 
     pygame.draw.rect(screen, (0,0,0), pygame.Rect(30, 30, screen_width-60, screen_height-60))
+    write_on_text(screen,"Level Selection",(255,255,255),screen_width/2,70,80)
 
     # To draw the level buttons, as they are 9, lets create a 3x3 grid
 
@@ -94,3 +96,11 @@ def draw_credits_screen(screen, screen_width):
         text_rect = text.get_rect(center=(screen_width // 2, y))
         screen.blit(text, text_rect)
         y += 60
+
+def write_on_text(screen,text,color,x,y,font_size):
+    directory = os.path.dirname(__file__)
+    font_path = os.path.join(directory, 'font', "RadiantKingdom-m5LeV.ttf")
+    font = pygame.font.SysFont(font_path,font_size)
+    text = font.render(text, True, color) 
+    text_rect = text.get_rect(center=(x,y))
+    screen.blit(text, text_rect)

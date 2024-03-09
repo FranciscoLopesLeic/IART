@@ -1,6 +1,7 @@
 from collections import deque
 import heapq
 from gamelogic import *
+from levels import *
 
 
 # TreeNode modelo
@@ -106,23 +107,6 @@ def iterative_deepening_search(initial_state, goal_state_func, operators_func, d
 
 
 
-def bfs(problem):
-    # problem(NPuzzleState) - the initial state
-    queue = [problem]
-    visited = set() # to not visit the same state twice
-
-    while queue:
-        x=0
-        # ...
-        # ...
-        # TO COMPLETE
-        # ...
-        # ...
-    return None
-
-
-
-
 def greedy_search(problem, heuristic):
     # problem (NPuzzleState) - the initial state
     # heuristic (function) - the heuristic function that takes a board (matrix), and returns an integer
@@ -201,3 +185,9 @@ def h2(state):
             (desired_row,desired_col) = _preferential_position(board[row][col],len(board))
             total += abs(col-desired_col) + abs(row-desired_row)
     return total
+
+goal = breadth_first_search(#Cogito(levels["Beginner"][0]["initial_state"],levels["Beginner"][0]["objective_state"]),
+                            Cogito([[0,1,0,1],[1,0,1,0],[0,0,0,0],[0,0,0,0]],[[0,0,0,0],[0,1,1,0],[0,1,1,0],[0,0,0,0]]), 
+                            check_win, 
+                            get_moves)
+print(goal.state)

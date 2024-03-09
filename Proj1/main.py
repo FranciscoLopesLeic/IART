@@ -13,7 +13,7 @@ fps = 60
 fpsClock = pygame.time.Clock()
 
 width, height = 1280, 800
-screen = pygame.display.set_mode((width, height),NOFRAME)
+screen = pygame.display.set_mode((width, height))
 
 screen_width, screen_height = screen.get_size()
 
@@ -41,7 +41,7 @@ button_quit_height = 100
 x_button_quit = (screen_width - button_quit_width) // 2
 y_button_quit = ((screen_height - button_quit_height) // 2) + 200
 
-button_start = Button(x_button_start, y_button_start, button_start_width, button_start_height, "Start", (125, 0, 150), (0, 0, 0), 60)
+button_start = Button(x_button_start, y_button_start, button_start_width, button_start_height, "Start", (125, 0, 150), (255, 255, 255), 60)
 button_options = Button(x_button_options, y_button_options, button_options_width, button_options_height, "Options", (0, 80, 255), (255, 255, 255), 60)
 button_quit = Button(x_button_quit, y_button_quit, button_quit_width, button_quit_height, "Quit", (255, 40, 100), (255, 255, 255), 60)
 
@@ -74,8 +74,6 @@ def main_menu_loop(screen):
     current_state = GameState.MAIN_MENU
     while True:
     # Draw Main Menu
-    
-
         for event in pygame.event.get():
             if event.type == QUIT:
                 pygame.quit()
@@ -96,6 +94,9 @@ def main_menu_loop(screen):
 
                 elif button_options.is_clicked(pygame.mouse.get_pos()):
                     current_state = GameState.OPTIONS_MENU
+                    # Adicione outros elementos do menu de opções conforme necessário
+                    # Exemplo: Botões para ajustar configurações
+                    
                 elif button_credits.is_clicked(pygame.mouse.get_pos()):
                     current_state = GameState.CREDITS_SCREEN
                 elif button_quit.is_clicked(pygame.mouse.get_pos()):
@@ -103,7 +104,7 @@ def main_menu_loop(screen):
                     sys.exit()
 
         if current_state == GameState.OPTIONS_MENU:
-            draw_options_menu(screen)
+            options_menu(screen)
 
         elif current_state == GameState.CREDITS_SCREEN:
             draw_credits_screen(screen, screen_width)
@@ -116,12 +117,28 @@ def main_menu_loop(screen):
             draw_main_menu(screen)
             button_start.draw(screen)
             button_quit.draw(screen)
-            button_options.draw(screen)
             # Voltar para o menu principal ao clicar na tela de créditos
 
         pygame.display.flip()
         fpsClock.tick(fps)
+def options_menu(screen):
+    draw_options_menu(screen)
+    button_controls.draw(screen)
+    button_credits.draw(screen)
+    button_return.draw(screen)
+    current_state = GameState.OPTIONS_MENU
 
+    while True:
+    # Draw Main Menu
+        for event in pygame.event.get():
+            if event.type == QUIT:
+                pygame.quit()
+                sys.exit()
+            elif event.type == MOUSEBUTTONDOWN:   
+                if button_credits.is_clicked(pygame.mouse.get_pos()):
+                    current_state = GameState.CREDITS_SCREEN
+            if current_state == GameState.CREDITS_SCREEN:
+                draw_credits_screen(screen, screen_width)
 def level_menu_loop(screen):
     draw_level_select_menu(screen)
     min_y = 30 + 140
@@ -131,6 +148,12 @@ def level_menu_loop(screen):
     x = min_x
     levels = [0]*9
     for i in range(0,3):
+        if i == 0:
+            write_on_text(screen,"Easy",(255,255,255),x+50,min_y-20,50)
+        elif i == 1:
+            write_on_text(screen,"Medium",(255,255,255),x+50,min_y-20,50)
+        elif i == 2:
+            write_on_text(screen,"Hard",(255,255,255),x+50,min_y-20,50)
         y = min_y
         for j in range(1,4):
             levels[j+(i*3)-1] = Button(x, y, 100, 100, str(j+(i*3)), (0,0,0), (255, 255, 255), 80)
@@ -161,7 +184,7 @@ def level_menu_loop(screen):
                     print("8")
                 elif levels[8].is_clicked(pygame.mouse.get_pos()):
                     print("9")
-            elif event.type == VIDEORESIZE or event.type == VIDEOEXPOSE:
+            """elif event.type == VIDEORESIZE or event.type == VIDEOEXPOSE:
 
                 ## TODO: NAO FUNCIONA, perguntar ao prof se deve suportar isto
                 draw_level_select_menu(screen)
@@ -178,7 +201,7 @@ def level_menu_loop(screen):
                         levels[j+(i*3)-1] = Button(x, y, 100, 100, str(j+(i*3)), (0,0,0), (255, 255, 255), 80)
                         levels[j+(i*3)-1].draw(screen)
                         y+=y_increment+100
-                    x += x_increment+100
+                    x += x_increment+100"""
         pygame.display.flip()
         fpsClock.tick(fps)
 
