@@ -118,10 +118,10 @@ def greedy_search(problem, heuristic):
     heap_states = []
 
     while states:
-        if current_state.is_complete():
+        if check_win(current_state):
             return current_state.move_history
         visited.add(current_state)
-        children_states = current_state.children()
+        children_states = current_state.get_moves()
         for c_state in children_states:
             heapq.heappush(heap_states,c_state)
             
@@ -186,8 +186,17 @@ def h2(state):
             total += abs(col-desired_col) + abs(row-desired_row)
     return total
 
-goal = breadth_first_search(#Cogito(levels["Beginner"][0]["initial_state"],levels["Beginner"][0]["objective_state"]),
+def print_solution(node):
+    if node == None:
+        print("None solution was found!")
+        return
+    while node != None:
+        print(node.state)
+        node = node.parent
+    
+    return
+goal = greedy_search(#Cogito(levels["Beginner"][0]["initial_state"],levels["Beginner"][0]["objective_state"]),
                             Cogito([[0,1,0,1],[1,0,1,0],[0,0,0,0],[0,0,0,0]],[[0,0,0,0],[0,1,1,0],[0,1,1,0],[0,0,0,0]]), 
                             check_win, 
-                            get_moves)
-print(goal.state)
+                            get_moves,3)
+print_solution(goal)

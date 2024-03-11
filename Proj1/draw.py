@@ -23,6 +23,15 @@ def draw_main_menu(screen):
     y = ((screen_height - image_height) // 2) - 200
     screen.blit(scaled_image,(x, y))
 
+def draw_level_menu(screen):
+    screen.fill((95, 158, 160))
+    screen_width, screen_height = screen.get_size()
+
+    pygame.draw.rect(screen, (0,0,0), pygame.Rect(30, 30, screen_width-60, screen_height-60))
+    write_on_text(screen,"Level",(255,255,255),screen_width/2,70,80)
+    write_on_text(screen,"Choose AI search method:",(255,255,255),260,160,50)
+    pygame.display.flip()
+
 def draw_level_select_menu(screen):
     screen.fill((95, 158, 160))  # Cor de fundo para o menu de opções
 
@@ -31,6 +40,7 @@ def draw_level_select_menu(screen):
 
     pygame.draw.rect(screen, (0,0,0), pygame.Rect(30, 30, screen_width-60, screen_height-60))
     write_on_text(screen,"Level Selection",(255,255,255),screen_width/2,70,80)
+    pygame.display.flip()
 
     # To draw the level buttons, as they are 9, lets create a 3x3 grid
 

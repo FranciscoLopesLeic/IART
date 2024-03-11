@@ -167,7 +167,7 @@ def level_menu_loop(screen):
                 sys.exit()
             elif event.type == MOUSEBUTTONDOWN:   
                 if levels[0].is_clicked(pygame.mouse.get_pos()):
-                    print("1")
+                    level_loop(screen,1)
                 elif levels[1].is_clicked(pygame.mouse.get_pos()):
                     print("2")
                 elif levels[2].is_clicked(pygame.mouse.get_pos()):
@@ -204,5 +204,18 @@ def level_menu_loop(screen):
                     x += x_increment+100"""
         pygame.display.flip()
         fpsClock.tick(fps)
+
+def level_loop(screen,level_n):
+    draw_level_menu(screen)
+    button_bfs = Button(140, 200, 100, 100, "BFS", (0,0,0), (255, 255, 255), 80)
+    button_bfs.draw(screen)
+    button_dfs = Button(140, 300, 100, 100, "DFS", (0,0,0), (255, 255, 255), 80)
+    button_dfs.draw(screen)
+    button_ids = Button(190, 400, 100, 100, "Iterative Deepening Search", (0,0,0), (255, 255, 255), 40)
+    button_ids.draw(screen)
+    button_greedy = Button(140, 500, 100, 100, "Greedy Search", (0,0,0), (255, 255, 255), 60)
+    button_greedy.draw(screen)
+    button_a_star = Button(140, 600, 100, 100, "A* Search", (0,0,0), (255, 255, 255), 80)
+    button_a_star.draw(screen)
 
 main_menu_loop(screen) 
