@@ -24,6 +24,33 @@ def draw_main_menu(screen):
     y = ((screen_height - image_height) // 2) - 200
     screen.blit(scaled_image,(x, y))
 
+def draw_level_menu(screen):
+    screen.fill((95, 158, 160))
+    screen_width, screen_height = screen.get_size()
+
+    pygame.draw.rect(screen, (0,0,0), pygame.Rect(30, 30, screen_width-60, screen_height-60))
+    write_on_text(screen,"Level",(255,255,255),screen_width/2,70,80)
+    write_on_text(screen,"Choose AI search method:",(255,255,255),260,160,50)
+    pygame.display.flip()
+
+def draw_level_select_menu(screen):
+    screen.fill((95, 158, 160))  # Cor de fundo para o menu de opções
+
+    screen_width, screen_height = screen.get_size()
+    
+
+    pygame.draw.rect(screen, (0,0,0), pygame.Rect(30, 30, screen_width-60, screen_height-60))
+    write_on_text(screen,"Level Selection",(255,255,255),screen_width/2,70,80)
+    pygame.display.flip()
+
+    # To draw the level buttons, as they are 9, lets create a 3x3 grid
+
+def draw_level_button(screen,text,x,y):
+    level_button_width = 100
+    level_button_height = 100
+
+    level_button = Button(x , y, level_button_width, level_button_height, text, (0, 0, 0), (255, 255, 255), 80)
+    level_button.draw(screen)
 
 def draw_options_menu(screen):
     screen.fill((95, 158, 160))  # Cor de fundo para o menu de opções
@@ -81,6 +108,15 @@ def draw_credits_screen(screen, screen_width):
         screen.blit(text, text_rect)
         y += 60
 
+
+def write_on_text(screen,text,color,x,y,font_size):
+    directory = os.path.dirname(__file__)
+    font_path = os.path.join(directory, 'font', "RadiantKingdom-m5LeV.ttf")
+    font = pygame.font.SysFont(font_path,font_size)
+    text = font.render(text, True, color) 
+    text_rect = text.get_rect(center=(x,y))
+    screen.blit(text, text_rect)
+    
 def draw_board(screen, level, screen_width, screen_height):
     screen.fill((95, 158, 160))  # Cor de fundo para o tabuleiro
 
@@ -105,9 +141,3 @@ def draw_board(screen, level, screen_width, screen_height):
             # Adicione mais condições conforme necessário
 
     # O restante do seu código permanece inalterado
-
-    
-
-
-
-

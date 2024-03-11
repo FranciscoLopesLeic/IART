@@ -18,6 +18,36 @@ class Cogito:
         self.final_board = final_board
         self.size = len(board)
 
+    def check_win(self):
+        if self.board == self.final_board:
+            return True
+        else:
+            return False
+        
+
+    '''needed for the visited list'''
+    def __eq__(self, other):
+        if isinstance(other, self.__class__):
+            return self.__dict__ == other.__dict__
+        else:
+            return False
+        
+    def get_moves(self):
+        moves = []
+        
+        for i in range(0,len(self.board)):
+            board_up = self.move(Direction.UP,Line.COLUMN,i)
+            board_down = self.move(Direction.DOWN,Line.COLUMN,i)
+            board_right = self.move(Direction.RIGHT,Line.ROW,i)
+            board_left = self.move(Direction.LEFT,Line.ROW,i)
+            moves.append(Cogito(board_up,self.final_board))
+            moves.append(Cogito(board_down,self.final_board))
+            moves.append(Cogito(board_right,self.final_board))
+            moves.append(Cogito(board_left,self.final_board))
+        return moves
+                
+
+
     def move(self,direction,line,n):
         # DIRECTION MUST BE UP,DOWN,LEFT,RIGHT
         # LINE can be row or column
@@ -74,10 +104,33 @@ class Cogito:
         #Maybe define new board as board.
         return new_board
     
+    def __hash__(self):
+        # to be able to use the state in a set
+        return hash(str([item for sublist in self.board for item in sublist]))
+
+    def __eq__(self, other):
+        # compares the two matrices
+        return [item for sublist in self.board for item in sublist] == [item for sublist in other.board for item in sublist]
     def __str__(self):
-        return np.matrix(self.board)
+        return str(np.matrix(self.board))
     
 
+def check_win(self):
+    if (np.array(self.board) == np.array(self.final_board)).all():
+        return True
+    else:
+        return False
 
-
-
+def get_moves(self):
+        moves = []
+        
+        for i in range(0,len(self.board)):
+            board_up = self.move(Direction.UP,Line.COLUMN,i)
+            board_down = self.move(Direction.DOWN,Line.COLUMN,i)
+            board_right = self.move(Direction.RIGHT,Line.ROW,i)
+            board_left = self.move(Direction.LEFT,Line.ROW,i)
+            moves.append(Cogito(board_up,self.final_board))
+            moves.append(Cogito(board_down,self.final_board))
+            moves.append(Cogito(board_right,self.final_board))
+            moves.append(Cogito(board_left,self.final_board))
+        return moves

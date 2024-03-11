@@ -1,5 +1,7 @@
 from collections import deque
 import heapq
+from gamelogic import *
+from levels import *
 
 
 # TreeNode modelo
@@ -105,38 +107,21 @@ def iterative_deepening_search(initial_state, goal_state_func, operators_func, d
 
 
 
-def bfs(problem):
-    # problem(NPuzzleState) - the initial state
-    queue = [problem]
-    visited = set() # to not visit the same state twice
-
-    while queue:
-        x=0
-        # ...
-        # ...
-        # TO COMPLETE
-        # ...
-        # ...
-    return None
-
-
-
-
 def greedy_search(problem, heuristic):
     # problem (NPuzzleState) - the initial state
     # heuristic (function) - the heuristic function that takes a board (matrix), and returns an integer
     # Mudar o NPuzzle
-    setattr(NPuzzleState, "__lt__", lambda self, other: heuristic(self) < heuristic(other))
+    setattr(Cogito, "__lt__", lambda self, other: heuristic(self) < heuristic(other))
     states = [problem]
     visited = set() # to not visit the same state twice
     current_state = problem
     heap_states = []
 
     while states:
-        if current_state.is_complete():
+        if check_win(current_state):
             return current_state.move_history
         visited.add(current_state)
-        children_states = current_state.children()
+        children_states = current_state.get_moves()
         for c_state in children_states:
             heapq.heappush(heap_states,c_state)
             
@@ -200,3 +185,18 @@ def h2(state):
             (desired_row,desired_col) = _preferential_position(board[row][col],len(board))
             total += abs(col-desired_col) + abs(row-desired_row)
     return total
+
+def print_solution(node):
+    if node == None:
+        print("None solution was found!")
+        return
+    while node != None:
+        print(node.state)
+        node = node.parent
+    
+    return
+goal = greedy_search(#Cogito(levels["Beginner"][0]["initial_state"],levels["Beginner"][0]["objective_state"]),
+                            Cogito([[0,1,0,1],[1,0,1,0],[0,0,0,0],[0,0,0,0]],[[0,0,0,0],[0,1,1,0],[0,1,1,0],[0,0,0,0]]), 
+                            check_win, 
+                            get_moves,3)
+print_solution(goal)
