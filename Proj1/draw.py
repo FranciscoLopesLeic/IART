@@ -1,6 +1,7 @@
 import os
 import pygame
 from pygame.locals import *
+from Proj1.levels import Piece
 from utils import Button
 
 def draw_main_menu(screen):
@@ -107,6 +108,7 @@ def draw_credits_screen(screen, screen_width):
         screen.blit(text, text_rect)
         y += 60
 
+
 def write_on_text(screen,text,color,x,y,font_size):
     directory = os.path.dirname(__file__)
     font_path = os.path.join(directory, 'font', "RadiantKingdom-m5LeV.ttf")
@@ -114,3 +116,28 @@ def write_on_text(screen,text,color,x,y,font_size):
     text = font.render(text, True, color) 
     text_rect = text.get_rect(center=(x,y))
     screen.blit(text, text_rect)
+    
+def draw_board(screen, level, screen_width, screen_height):
+    screen.fill((95, 158, 160))  # Cor de fundo para o tabuleiro
+
+    initial_state = level["initial_state"]
+    # Desenha o tabuleiro
+    for row in range(len(initial_state)):
+        for col in range(len(initial_state[row])):
+            x = col * (screen_width // len(initial_state[row]))
+            y = row * (screen_height // len(initial_state))
+            pygame.draw.rect(screen, (192, 192, 192), (x, y, screen_width // len(initial_state[row]), screen_height // len(initial_state)), 5)
+
+            # Desenha o conteúdo do tabuleiro
+            if initial_state[row][col] == Piece.NORMAL:
+                # Desenha um círculo para representar uma peça normal
+                pygame.draw.circle(screen, (51, 153, 255), (x + (screen_width // len(initial_state[row]) // 2), y + (screen_height // len(initial_state) // 2)), 30)
+
+
+            elif initial_state[row][col] == Piece.SPECIAL:
+                # Desenha um círculo para representar uma peça especial
+                pygame.draw.circle(screen, (0, 204, 0), (x + (screen_width // len(initial_state[row]) // 2), y + (screen_height // len(initial_state) // 2)), 30)
+
+            # Adicione mais condições conforme necessário
+
+    # O restante do seu código permanece inalterado
