@@ -12,11 +12,12 @@ class Line(Enum):
     COLUMN = 2
 
 class Cogito:
-    def __init__(self,board,final_board):
+    def __init__(self,board,final_board,move_history=[]):
         #Note: board must be quadratic (len(row)==len(column))
         self.board = board
         self.final_board = final_board
         self.size = len(board)
+        self.move_history = [] + move_history + [self.board]
 
     def check_win(self):
         if self.board == self.final_board:
@@ -40,10 +41,10 @@ class Cogito:
             board_down = self.move(Direction.DOWN,Line.COLUMN,i)
             board_right = self.move(Direction.RIGHT,Line.ROW,i)
             board_left = self.move(Direction.LEFT,Line.ROW,i)
-            moves.append(Cogito(board_up,self.final_board))
-            moves.append(Cogito(board_down,self.final_board))
-            moves.append(Cogito(board_right,self.final_board))
-            moves.append(Cogito(board_left,self.final_board))
+            moves.append(Cogito(board_up,self.final_board,self.move_history))
+            moves.append(Cogito(board_down,self.final_board,self.move_history))
+            moves.append(Cogito(board_right,self.final_board,self.move_history))
+            moves.append(Cogito(board_left,self.final_board,self.move_history))
         return moves
                 
 

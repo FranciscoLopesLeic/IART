@@ -159,8 +159,9 @@ def _preferential_position(number, side):
 
 def h1(state):
     # heuristic function 1
-    # returns the number of incorrect placed pieces in the matrix
+    # returns the number of incorrect SPECIAL placed pieces in the matrix
     board = state.board
+    desired_board = state.final_board
     side = len(board) # the size of the side of the board (only for square boards)
 
     total = 0
@@ -168,22 +169,41 @@ def h1(state):
     # checks if the board is complete
     for row in range(len(board)):
         for col in range(len(board[0])):
-            (desired_row,desired_col) = _preferential_position(board[row][col],len(board))
-            if row != desired_row or desired_col != col:
+            if board[row][col] == Piece.SPECIAL and desired_board[row][col] != board[row][col]:
                 total += 1
     return total
-
+def find_nearest_piece(board,row,col,desired_board):
+    # Esta funcao retorna a localizacao da peça mais proxima no tabuleiro final da peça desejada, que nao esta preenchida
+    searching_row=1
+    searching_col=1
+    not_found = True
+    possible_cases = []
+    while not_found:
+        for row_search in range(-searching_row,searching_row+1):
+            if (len(board)-1) >= row_search+row and row_search+row>=0:
+                for col_search in range(-searching_col,searching_col+1):
+                    if (len(board)-1) >= col_search+col and col_search+col>=0 and (col_search,row_search) != (0,0) and board[row_search+row][col_search+col] != Piece.SPECIAL and desired_board[row_search+row][col_search+col]==Piece.SPECIAL:
+                        possible_cases.append((row_search+row,col_search+col))
+        if(len(possible_cases))>0:
+            sort = sorted(possible_cases,key=lambda x: abs(row - x[0]) + abs(col - x[1]))
+            return sort[0]
+        searching_row+=1
+        searching_col+=1
+        if searching_row==len(board):
+            return None
 def h2(state):
     # heuristic function 2
     # returns the sum of manhattan distances from incorrect placed pieces to their correct places
     board = state.board
+    desired_board = state.final_board
     side = len(board) # the size of the side of the board (only for square boards)
 
     total = 0
     for row in range(len(board)):
         for col in range(len(board[0])):
-            (desired_row,desired_col) = _preferential_position(board[row][col],len(board))
-            total += abs(col-desired_col) + abs(row-desired_row)
+            if board[row][col] == Piece.SPECIAL and desired_board[row][col] != board[row][col]:
+                (desired_row,desired_col) = find_nearest_piece(board,row,col,desired_board)
+                total += abs(col-desired_col) + abs(row-desired_row)
     return total
 
 def print_solution(node):
@@ -195,8 +215,16 @@ def print_solution(node):
         node = node.parent
     
     return
-goal = greedy_search(#Cogito(levels["Beginner"][0]["initial_state"],levels["Beginner"][0]["objective_state"]),
-                            Cogito([[0,1,0,1],[1,0,1,0],[0,0,0,0],[0,0,0,0]],[[0,0,0,0],[0,1,1,0],[0,1,1,0],[0,0,0,0]]), 
-                            check_win, 
-                            get_moves,3)
-print_solution(goal)
+
+def print_sequence(sequence):
+    print("Steps:", len(sequence) - 1)
+    # prints the sequence of states
+    for state in sequence:
+        for row in state:
+            print(row)
+        print()
+
+"""goal = breadth_first_search(Cogito(levels["Beginner"][0]["initial_state"],levels["Beginner"][0]["objective_state"]), check_win,get_moves)
+print_solution(goal)"""
+
+print(h2(Cogito(levels["Beginner"][0]["initial_state"],levels["Beginner"][0]["objective_state"])))
