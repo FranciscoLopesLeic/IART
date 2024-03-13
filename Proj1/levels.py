@@ -13,13 +13,13 @@ class Level:
 
 beginner_1 = {
     "initial_state": [
-        [Piece.NORMAL , Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL],
-        [Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL],
-        [Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL, Piece.SPECIAL, Piece.NORMAL],
-        [Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL],
-        [Piece.SPECIAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL],
+        [Piece.NORMAL , Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL],
+        [Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL],
+        [Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL],
+        [Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL],
+        [Piece.SPECIAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL],
         [Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL],
-        [Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL],
+        [Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL],
     ],
     "objective_state": [
         [Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL],
@@ -35,13 +35,13 @@ beginner_1 = {
 
 beginner_2 = {
     "initial_state": [
-        [Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL],
-        [Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL],
-        [Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL],
-        [Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL, Piece.SPECIAL, Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL],
-        [Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL],
-        [Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL],
-        [Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL],
+        [Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL],
+        [Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL],
+        [Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL],
+        [Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL],
+        [Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL],
+        [Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL],
+        [Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL],
     ],
     "objective_state": [
         [Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL],
@@ -57,11 +57,11 @@ beginner_2 = {
 beginner_3 = {
     "initial_state": [
         [Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL],
-        [Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL],
-        [Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL],
-        [Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL],
-        [Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL],
-        [Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL],
+        [Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL],
+        [Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL],
+        [Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL],
+        [Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL],
+        [Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL],
         [Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL],
     ],
     "objective_state": [
@@ -78,15 +78,15 @@ beginner_3 = {
 
 amateur_1 = {
     "initial_state": [
-        [Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL],
-        [Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL],
-        [Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL],
-        [Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL, Piece.SPECIAL, Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL],
-        [Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL, Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL, Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL],
-        [Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL, Piece.SPECIAL, Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL],
-        [Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL],
-        [Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL],
-        [Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL],
+        [Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL],
+        [Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL],
+        [Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL],
+        [Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL],
+        [Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL],
+        [Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL],
+        [Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL],
+        [Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL],
+        [Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL],
     ],
     "objective_state": [
         [Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL],
@@ -104,15 +104,15 @@ amateur_1 = {
 
 amateur_2 = {
     "initial_state": [
-        [Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL],
-        [Piece.NORMAL, Piece.SPECIAL, Piece.SPECIAL, Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL, Piece.SPECIAL, Piece.SPECIAL, Piece.NORMAL],
-        [Piece.SPECIAL, Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL, Piece.SPECIAL, Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL, Piece.SPECIAL],
-        [Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL],
-        [Piece.NORMAL, Piece.SPECIAL, Piece.SPECIAL, Piece.SPECIAL, Piece.SPECIAL, Piece.SPECIAL, Piece.SPECIAL, Piece.SPECIAL, Piece.NORMAL],
-        [Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL],
-        [Piece.SPECIAL, Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL, Piece.SPECIAL, Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL, Piece.SPECIAL],
-        [Piece.NORMAL, Piece.SPECIAL, Piece.SPECIAL, Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL, Piece.SPECIAL, Piece.SPECIAL, Piece.NORMAL],
-        [Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL],
+        [Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL],
+        [Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL],
+        [Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL, Piece.SPECIAL],
+        [Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL],
+        [Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL],
+        [Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL],
+        [Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL, Piece.SPECIAL],
+        [Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL],
+        [Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL],
     ],
     "objective_state": [
         [Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL],
@@ -129,15 +129,15 @@ amateur_2 = {
 
 amateur_3 = {
     "initial_state": [
-        [Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL],
-        [Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL, Piece.SPECIAL, Piece.SPECIAL, Piece.SPECIAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL],
-        [Piece.NORMAL, Piece.SPECIAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL, Piece.SPECIAL, Piece.NORMAL],
-        [Piece.SPECIAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL, Piece.SPECIAL],
+        [Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL],
+        [Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL],
+        [Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL],
+        [Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL],
         [Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL],
-        [Piece.SPECIAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL, Piece.SPECIAL],
-        [Piece.NORMAL, Piece.SPECIAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL, Piece.SPECIAL, Piece.NORMAL],
-        [Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL, Piece.SPECIAL, Piece.SPECIAL, Piece.SPECIAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL],
-        [Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL],
+        [Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL],
+        [Piece.NORMAL, Piece.SPECIAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL],
+        [Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL],
+        [Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL],
     ],
     "objective_state": [
         [Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL],
@@ -155,17 +155,17 @@ amateur_3 = {
 
 expert_1 = {
     "initial_state": [
-        [Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL],
-        [Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL],
-        [Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL, Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL],
-        [Piece.NORMAL, Piece.SPECIAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL, Piece.SPECIAL, Piece.NORMAL],
-        [Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL],
-        [Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL],
-        [Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL],
-        [Piece.NORMAL, Piece.SPECIAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL, Piece.SPECIAL, Piece.NORMAL],
-        [Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL, Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL],
-        [Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL],
-        [Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL],
+        [Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL],
+        [Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL],
+        [Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL],
+        [Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL],
+        [Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL],
+        [Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL],
+        [Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL],
+        [Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL],
+        [Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL],
+        [Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL],
+        [Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL],
     ],
     "objective_state": [
         [Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL],
@@ -185,17 +185,17 @@ expert_1 = {
 
 expert_2 = {
     "initial_state": [
-        [Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL],
-        [Piece.NORMAL, Piece.SPECIAL, Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL, Piece.SPECIAL, Piece.NORMAL],
-        [Piece.SPECIAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL, Piece.SPECIAL],
-        [Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL, Piece.SPECIAL, Piece.SPECIAL, Piece.SPECIAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL],
-        [Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL],
-        [Piece.SPECIAL, Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL, Piece.SPECIAL],
-        [Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL],
-        [Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL, Piece.SPECIAL, Piece.SPECIAL, Piece.SPECIAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL],
-        [Piece.SPECIAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL, Piece.SPECIAL],
-        [Piece.NORMAL, Piece.SPECIAL, Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL, Piece.SPECIAL, Piece.NORMAL],
-        [Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL],
+        [Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL],
+        [Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL],
+        [Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL],
+        [Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL],
+        [Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL],
+        [Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL],
+        [Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL],
+        [Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL],
+        [Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL],
+        [Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL],
+        [Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL],
     ],
     "objective_state": [
         [Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL],
@@ -214,17 +214,17 @@ expert_2 = {
 
 expert_3 = {
     "initial_state": [
-        [Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL],
-        [Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL, Piece.SPECIAL, Piece.SPECIAL, Piece.SPECIAL, Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL],
-        [Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL],
-        [Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL],
-        [Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL, Piece.SPECIAL, Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL],
-        [Piece.SPECIAL, Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL, Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL, Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL, Piece.SPECIAL],
-        [Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL, Piece.SPECIAL, Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL],
-        [Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL],
-        [Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL],
-        [Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL, Piece.SPECIAL, Piece.SPECIAL, Piece.SPECIAL, Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL],
-        [Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.SPECIAL],
+        [Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL],
+        [Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL],
+        [Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL],
+        [Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL],
+        [Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL],
+        [Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL],
+        [Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL],
+        [Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL],
+        [Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL],
+        [Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL],
+        [Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL],
     ],
     "objective_state": [
         [Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL],
