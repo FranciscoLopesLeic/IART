@@ -131,12 +131,12 @@ def draw_board(screen, level, screen_width, screen_height,initial_x,initial_y):
             # Desenha o conteúdo do tabuleiro
             if initial_state[row][col] == Piece.NORMAL:
                 # Desenha um círculo para representar uma peça normal
-                pygame.draw.rect(screen, (51, 153, 255), (x, y, screen_width // len(initial_state[row]), screen_height // len(initial_state)), 5)
+                pygame.draw.rect(screen, (51, 153, 255), (x, y, screen_width // len(initial_state[row]), screen_height // len(initial_state)))
 
 
             elif initial_state[row][col] == Piece.SPECIAL:
                 # Desenha um círculo para representar uma peça especial
-                pygame.draw.rect(screen, (0, 204, 0), (x, y, screen_width // len(initial_state[row]), screen_height // len(initial_state)), 5)
+                pygame.draw.rect(screen, (0, 204, 0), (x, y, screen_width // len(initial_state[row]), screen_height // len(initial_state)))
 
             # Adicione mais condições conforme necessário
 
