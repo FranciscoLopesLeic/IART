@@ -3,7 +3,7 @@ import pygame
 from pygame.locals import *
 from draw import *
 from utils import *
-from levels import beginner_1
+from levels import *
 from typing import Dict, List
 from game import Game
 
@@ -207,15 +207,16 @@ def level_menu_loop(screen):
 
 def level_loop(screen,level_n):
     draw_level_menu(screen)
-    button_bfs = Button(140, 200, 100, 100, "BFS", (0,0,0), (255, 255, 255), 80)
+    button_bfs = Button(50, 200, 110, 100, "BFS", (125, 125, 125), (255, 255, 255), 80)
     button_bfs.draw(screen)
-    button_dfs = Button(140, 300, 100, 100, "DFS", (0,0,0), (255, 255, 255), 80)
+    button_dfs = Button(50, 310, 110, 100, "DFS", (125, 125, 125), (255, 255, 255), 80)
     button_dfs.draw(screen)
-    button_ids = Button(190, 400, 100, 100, "Iterative Deepening Search", (0,0,0), (255, 255, 255), 40)
+    button_ids = Button(50, 420, 400, 70, "Iterative Deepening Search", (125, 125, 125), (255, 255, 255), 40)
     button_ids.draw(screen)
-    button_greedy = Button(140, 500, 100, 100, "Greedy Search", (0,0,0), (255, 255, 255), 60)
+    button_greedy = Button(50, 500, 320, 100, "Greedy Search", (125, 125, 125), (255, 255, 255), 60)
     button_greedy.draw(screen)
-    button_a_star = Button(140, 600, 100, 100, "A* Search", (0,0,0), (255, 255, 255), 80)
+    button_a_star = Button(50, 610, 320, 100, "A* Search", (125, 125, 125), (255, 255, 255), 80)
     button_a_star.draw(screen)
+    draw_board(screen,levels["Beginner"][0],200,200,800,100)
 
 main_menu_loop(screen) 
