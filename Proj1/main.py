@@ -217,6 +217,8 @@ def level_loop(screen,level_n):
     button_greedy.draw(screen)
     button_a_star = Button(50, 610, 320, 100, "A* Search", (125, 125, 125), (255, 255, 255), 80)
     button_a_star.draw(screen)
-    draw_board(screen,levels["Beginner"][0],200,200,800,100)
+    draw_board_initial(screen,levels["Beginner"][0],200,200,800,100)
+    draw_arrow(screen, (900, 350), (900, 450))
+    draw_board_objective(screen,levels["Beginner"][0],200,200,800,500)
 
 main_menu_loop(screen) 

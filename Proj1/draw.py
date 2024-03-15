@@ -117,10 +117,11 @@ def write_on_text(screen,text,color,x,y,font_size):
     text_rect = text.get_rect(center=(x,y))
     screen.blit(text, text_rect)
     
-def draw_board(screen, level, screen_width, screen_height,initial_x,initial_y):
+def draw_board_initial(screen, level, screen_width, screen_height,initial_x,initial_y):
     # screen.fill((95, 158, 160))  # Cor de fundo para o tabuleiro
 
     initial_state = level["initial_state"]
+
     # Desenha o tabuleiro
     for row in range(len(initial_state)):
         for col in range(len(initial_state[row])):
@@ -138,6 +139,29 @@ def draw_board(screen, level, screen_width, screen_height,initial_x,initial_y):
                 # Desenha um círculo para representar uma peça especial
                 pygame.draw.rect(screen, (0, 204, 0), (x, y, screen_width // len(initial_state[row]), screen_height // len(initial_state)))
 
-            # Adicione mais condições conforme necessário
 
-    # O restante do seu código permanece inalterado
+def draw_board_objective(screen, level, screen_width, screen_height,initial_x,initial_y):
+    objective_state = level["objective_state"]
+    for row in range(len(objective_state)):
+        for col in range(len(objective_state[row])):
+            x = (col * (screen_width // len(objective_state[row]))+initial_x)
+            y = (row * (screen_height // len(objective_state))+initial_y)
+            #pygame.draw.rect(screen, (192, 192, 192), (x, y, screen_width // len(initial_state[row]), screen_height // len(initial_state)), 5)
+
+            # Desenha o conteúdo do tabuleiro
+            if objective_state[row][col] == Piece.NORMAL:
+                # Desenha um círculo para representar uma peça normal
+                pygame.draw.rect(screen, (51, 153, 255), (x, y, screen_width // len(objective_state[row]), screen_height // len(objective_state)))
+
+
+            elif objective_state[row][col] == Piece.SPECIAL:
+                # Desenha um círculo para representar uma peça especial
+                pygame.draw.rect(screen, (0, 204, 0), (x, y, screen_width // len(objective_state[row]), screen_height // len(objective_state)))
+
+
+def draw_arrow(screen, start_pos, end_pos):
+    # Calcula a direção da seta
+    direction = (end_pos[0] - start_pos[0], end_pos[1] - start_pos[1])
+
+    # Desenha as pontas da seta
+    pygame.draw.polygon(screen, (51, 153, 255), ((end_pos[0], end_pos[1]), (end_pos[0] - direction[0] - direction[1], end_pos[1] - direction[1] + direction[0]), (end_pos[0] - direction[0] + direction[1], end_pos[1] - direction[1] - direction[0])))
