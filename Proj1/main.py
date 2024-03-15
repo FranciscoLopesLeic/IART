@@ -221,4 +221,34 @@ def level_loop(screen,level_n):
     draw_arrow(screen, (900, 350), (900, 450))
     draw_board_objective(screen,levels["Beginner"][0],200,200,800,500)
 
+
+def calculating_loop(screen):
+    draw_calculating_screen(screen)
+
+
+def heuristic_choice_loop(screen):
+    button_incorrect, button_manhattan = draw_heuristic_choice_screen(screen)
+    heuristic_chosen = None
+
+    while heuristic_chosen is None:
+        for event in pygame.event.get():
+            if event.type == QUIT:
+                pygame.quit()
+                sys.exit()
+            elif event.type == MOUSEBUTTONDOWN:
+                if button_incorrect.is_clicked(pygame.mouse.get_pos()):
+                    heuristic_chosen = "incorrect"
+                    print("Número de peças incorretas escolhido")
+                elif button_manhattan.is_clicked(pygame.mouse.get_pos()):
+                    heuristic_chosen = "manhattan"
+                    print("Soma de distâncias de Manhattan escolhida")
+
+        pygame.display.flip()
+        fpsClock.tick(fps)
+
+    return heuristic_chosen
+
+
+
+
 main_menu_loop(screen) 
