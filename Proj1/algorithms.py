@@ -2,6 +2,7 @@ from collections import deque
 import heapq
 from gamelogic import *
 from levels import *
+import time
 
 
 # TreeNode modelo
@@ -20,21 +21,26 @@ class TreeNode:
 def breadth_first_search(initial_state, goal_state_func, operators_func):
     root = TreeNode(initial_state)   # create the root node in the search tree
     queue = deque([root])   # initialize the queue to store the nodes
-    
+    state_list = []
+    state_list.append(initial_state)
     while queue:
         node = queue.popleft()   # get first element in the queue
-        if goal_state_func(node.state):   # check goal state
+        if check_win(node.state):   # check goal state
             return node
         
-        for state in operators_func(node.state):   # go through next states
-            # create tree node with the new state
-            newNode = TreeNode(state)
+        for state in operators_func(node.state):
+            if(state not in state_list):   # go through next states
+                # create tree node with the new state
+                newNode = TreeNode(state) 
+                print(state)
             
-            # link child node to its parent in the tree
-            node.add_child(newNode)
+                # link child node to its parent in the tree
+                node.add_child(newNode)
+
+                state_list.append(state)
             
-            # enqueue the child node
-            queue.append(newNode)
+                # enqueue the child node
+                queue.append(newNode)
             
 
     return
@@ -66,7 +72,13 @@ def depth_first_search_rec(node, goal_state_func, operators_func, state_list):
     return None
 
 
+def a_star_search(problem, heuristic):
+    # problem (NPuzzleState) - the initial state
+    # heuristic (function) - the heuristic function that takes a board (matrix), and returns an integer
 
+    
+    # this is very similar to greedy, the difference is that it takes into account the cost of the path so far
+    return greedy_search(problem, lambda state: heuristic(state) + len(state.move_history))
 
 def depth_limited_search(initial_state, goal_state_func, operators_func, depth_limit):
     root = TreeNode(initial_state)
@@ -76,7 +88,7 @@ def depth_limited_search(initial_state, goal_state_func, operators_func, depth_l
     return None
 
 def depth_limited_search_rec(node, goal_state_func, operators_func, state_list,depth_limit,current_depth):
-    if(goal_state_func(node.state)):  # create the root node in the search tree
+    if(check_win(node.state)):  # create the root node in the search tree
         return node
     if current_depth == depth_limit:
         return None
@@ -96,7 +108,7 @@ def depth_limited_search_rec(node, goal_state_func, operators_func, state_list,d
 
 
 
-def iterative_deepening_search(initial_state, goal_state_func, operators_func, depth_limit):
+def iterative_deepening_search(initial_state, goal_state_func, operators_func):
     depth_limit = 0
     while True:
         result = depth_limited_search(initial_state, goal_state_func, operators_func, depth_limit)
@@ -219,12 +231,18 @@ def print_solution(node):
 def print_sequence(sequence):
     print("Steps:", len(sequence) - 1)
     # prints the sequence of states
-    for state in sequence:
+    """for state in sequence:
         for row in state:
             print(row)
-        print()
-
-"""goal = breadth_first_search(Cogito(levels["Beginner"][0]["initial_state"],levels["Beginner"][0]["objective_state"]), check_win,get_moves)
-print_solution(goal)"""
-
-print(h2(Cogito(levels["Beginner"][0]["initial_state"],levels["Beginner"][0]["objective_state"])))
+        print()"""
+"""
+goal = breadth_first_search(Cogito(levels["Beginner"][0]["initial_state"],levels["Beginner"][0]["objective_state"]), check_win,get_moves)
+print_sequence(goal)
+"""
+start = time.time()
+print_sequence(iterative_deepening_search(Cogito([[0, 0, 0, 0, 0],[0, 1, 1, 1, 0],[0, 1, 1, 1, 0],[0, 1, 1, 1, 0],[0, 0, 0, 0, 0]],[[1, 0, 0, 1, 0],[1, 1, 0, 1, 1],[0, 1, 0, 0, 1],[0, 0, 1, 0, 0],[0, 0, 0, 0, 0]]),check_win,get_moves))
+end = time.time()
+print(end - start)
+# print_sequence(greedy_search(Cogito([[0, 0, 0, 0, 0],[0, 1, 1, 1, 0],[0, 1, 1, 1, 0],[0, 1, 1, 1, 0],[0, 0, 0, 0, 0]],[[1, 0, 0, 1, 0],[1, 1, 0, 1, 1],[0, 1, 0, 0, 1],[0, 0, 1, 0, 0],[0, 0, 0, 0, 0]]),h1))
+# print(check_win(Cogito([[0, 0, 0, 0, 0],[0, 1, 1, 1, 0],[0, 1, 1, 1, 0],[0, 1, 1, 1, 0],[0, 0, 0, 0, 0]],[[1, 0, 0, 1, 0],[1, 1, 0, 1, 1],[0, 1, 0, 0, 1],[0, 0, 1, 0, 0],[0, 0, 0, 0, 0]])))
+# print(check_win(Cogito([[0, 0, 0, 0, 0],[0, 1, 1, 1, 0],[0, 1, 1, 1, 0],[0, 1, 1, 1, 0],[0, 0, 0, 0, 0]],[[0, 0, 0, 0, 0],[0, 1, 1, 1, 0],[0, 1, 1, 1, 0],[0, 1, 1, 1, 0],[0, 0, 0, 0, 0]])))
