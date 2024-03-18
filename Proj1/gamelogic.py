@@ -1,5 +1,6 @@
 from enum import Enum
 import numpy as np
+import time
  
 class Direction(Enum):
     UP = 1
@@ -19,35 +20,6 @@ class Cogito:
         self.size = len(board)
         self.move_history = [] + move_history + [self.board]
 
-    def check_win(self):
-        if self.board == self.final_board:
-            return True
-        else:
-            return False
-        
-
-    '''needed for the visited list'''
-    def __eq__(self, other):
-        if isinstance(other, self.__class__):
-            return self.__dict__ == other.__dict__
-        else:
-            return False
-        
-    def get_moves(self):
-        moves = []
-        
-        for i in range(0,len(self.board)):
-            board_up = self.move(Direction.UP,Line.COLUMN,i)
-            board_down = self.move(Direction.DOWN,Line.COLUMN,i)
-            board_right = self.move(Direction.RIGHT,Line.ROW,i)
-            board_left = self.move(Direction.LEFT,Line.ROW,i)
-            moves.append(Cogito(board_up,self.final_board,self.move_history))
-            moves.append(Cogito(board_down,self.final_board,self.move_history))
-            moves.append(Cogito(board_right,self.final_board,self.move_history))
-            moves.append(Cogito(board_left,self.final_board,self.move_history))
-        return moves
-                
-
 
     def move(self,direction,line,n):
         # DIRECTION MUST BE UP,DOWN,LEFT,RIGHT
@@ -64,44 +36,30 @@ class Cogito:
         
         # Proceeds to change the board
         old_board = self.board
-        new_board = np.zeros((len(old_board),len(old_board[0]))).astype(int)
+        new_board = [row[:] for row in old_board]
         
         # FOR LOOP - rows
         if(line == Line.ROW):
-            for row in range(len(old_board)):
-                for column in range(len(old_board[row])):
-                    if n == row:
-                        if direction == Direction.RIGHT:
-                            new_board[row][column] = old_board[row][column-1]
-                        elif direction == Direction.LEFT:
-                            if column == len(old_board[row])-1:
-                                new_board[row][column] = old_board[row][0]
-                            else:
-                                new_board[row][column] = old_board[row][column+1]
-                        else:
-                            new_board[row][column] = old_board[row][column]
+            for column in range(len(old_board)):
+                if direction == Direction.RIGHT:
+                    new_board[n][column] = old_board[n][column-1]
+                elif direction == Direction.LEFT:
+                    if column == (len(old_board)-1):
+                        new_board[n][column] = old_board[n][0]
                     else:
-                        new_board[row][column] = old_board[row][column]
-
-        # FOR LOOP - Columns
-        elif line == Line.COLUMN:
+                        new_board[n][column] = old_board[n][column+1]
+        else:
             for row in range(len(old_board)):
-                for column in range(len(old_board[row])):
-                    if n == column:
-                        if direction == Direction.UP:
-                            if row == len(old_board)-1:
-                                new_board[row][column] = old_board[0][column]
-                            else:
-                                new_board[row][column] = old_board[row+1][column]
-                        elif direction == Direction.DOWN:
-                            if row == 0:
-                                new_board[row][column] = old_board[len(old_board[0])-1][column]
-                            else:
-                                new_board[row][column] = old_board[row-1][column]
-                        else:
-                            new_board[row][column] = old_board[row][column]
+                if direction == Direction.DOWN:
+                    if row == 0:
+                        new_board[row][n] = old_board[len(old_board)-1][n]
                     else:
-                        new_board[row][column] = old_board[row][column]
+                        new_board[row][n] = old_board[row-1][n]
+                elif direction == Direction.UP:
+                    if row == (len(old_board)-1):
+                        new_board[row][n] = old_board[0][n]
+                    else:
+                        new_board[row][n] = old_board[row+1][n]
         #Maybe define new board as board.
         return new_board
     
@@ -116,8 +74,8 @@ class Cogito:
         return str(np.matrix(self.board))
     
 
-def check_win(self):
-    if (np.array(self.board) == np.array(self.final_board)).all():
+def check_win(board, final_board):
+    if np.allclose(board, final_board):
         return True
     else:
         return False
@@ -130,8 +88,9 @@ def get_moves(self):
             board_down = self.move(Direction.DOWN,Line.COLUMN,i)
             board_right = self.move(Direction.RIGHT,Line.ROW,i)
             board_left = self.move(Direction.LEFT,Line.ROW,i)
-            moves.append(Cogito(board_up,self.final_board))
-            moves.append(Cogito(board_down,self.final_board))
-            moves.append(Cogito(board_right,self.final_board))
-            moves.append(Cogito(board_left,self.final_board))
+            moves.append(Cogito(board_up,self.final_board,self.move_history))
+            moves.append(Cogito(board_down,self.final_board,self.move_history))
+            moves.append(Cogito(board_right,self.final_board,self.move_history))
+            moves.append(Cogito(board_left,self.final_board,self.move_history))
+
         return moves
