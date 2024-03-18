@@ -217,7 +217,7 @@ def level_loop(screen,level):
     button_a_star.draw(screen)
     draw_board_initial(screen,level.board,200,200,800,100)
     draw_arrow(screen, (900, 350), (900, 450))
-    draw_board_objective(screen,level.final_board,200,200,800,500)
+    draw_board_objective(screen, level.board, level.final_board, 200,200,800,500)
     while True:
         for event in pygame.event.get():
             if event.type == QUIT:
