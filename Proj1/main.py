@@ -3,10 +3,10 @@ import pygame
 from pygame.locals import *
 from draw import *
 from utils import *
+from levels import levels as level_select
+from gamelogic import *
 from levels import *
-from typing import Dict, List
-from game import Game
-
+from algorithms import *
 pygame.init()
 
 fps = 60
@@ -167,23 +167,23 @@ def level_menu_loop(screen):
                 sys.exit()
             elif event.type == MOUSEBUTTONDOWN:   
                 if levels[0].is_clicked(pygame.mouse.get_pos()):
-                    level_loop(screen,1)
+                    level_loop(screen,Cogito(level_select["Beginner"][0]["initial_state"],level_select["Beginner"][0]["objective_state"]))
                 elif levels[1].is_clicked(pygame.mouse.get_pos()):
-                    print("2")
+                    level_loop(screen,Cogito(level_select["Beginner"][1]["initial_state"],level_select["Begimner"][1]["objective_state"]))
                 elif levels[2].is_clicked(pygame.mouse.get_pos()):
-                    print("3")
+                    level_loop(screen,Cogito(level_select["Beginner"][2]["initial_state"],level_select["Beginner"][2]["objective_state"]))
                 elif levels[3].is_clicked(pygame.mouse.get_pos()):
-                    print("4")
+                    level_loop(screen,Cogito(level_select["Amateur"][0]["initial_state"],level_select["Amateur"][0]["objective_state"]))
                 elif levels[4].is_clicked(pygame.mouse.get_pos()):
-                    print("5")
+                    level_loop(screen,Cogito(level_select["Amateur"][1]["initial_state"],level_select["Amateur"][1]["objective_state"]))
                 elif levels[5].is_clicked(pygame.mouse.get_pos()):
-                    print("6")
+                    level_loop(screen,Cogito(level_select["Amateur"][2]["initial_state"],level_select["Amateur"][2]["objective_state"]))
                 elif levels[6].is_clicked(pygame.mouse.get_pos()):
-                    print("7")
+                    level_loop(screen,Cogito(level_select["Expert"][0]["initial_state"],level_select["Expert"][0]["objective_state"]))
                 elif levels[7].is_clicked(pygame.mouse.get_pos()):
-                    print("8")
+                    level_loop(screen,Cogito(level_select["Expert"][1]["initial_state"],level_select["Expert"][1]["objective_state"]))
                 elif levels[8].is_clicked(pygame.mouse.get_pos()):
-                    print("9")
+                    level_loop(screen,Cogito(level_select["Expert"][2]["initial_state"],level_select["Expert"][2]["objective_state"]))
             """elif event.type == VIDEORESIZE or event.type == VIDEOEXPOSE:
 
                 ## TODO: NAO FUNCIONA, perguntar ao prof se deve suportar isto
@@ -205,28 +205,62 @@ def level_menu_loop(screen):
         pygame.display.flip()
         fpsClock.tick(fps)
 
-def level_loop(screen,level_n):
+def level_loop(screen,level):
     draw_level_menu(screen)
     button_bfs = Button(50, 200, 110, 100, "BFS", (125, 125, 125), (255, 255, 255), 80)
     button_bfs.draw(screen)
-    button_dfs = Button(50, 310, 110, 100, "DFS", (125, 125, 125), (255, 255, 255), 80)
-    button_dfs.draw(screen)
     button_ids = Button(50, 420, 400, 70, "Iterative Deepening Search", (125, 125, 125), (255, 255, 255), 40)
     button_ids.draw(screen)
     button_greedy = Button(50, 500, 320, 100, "Greedy Search", (125, 125, 125), (255, 255, 255), 60)
     button_greedy.draw(screen)
     button_a_star = Button(50, 610, 320, 100, "A* Search", (125, 125, 125), (255, 255, 255), 80)
     button_a_star.draw(screen)
-    draw_board_initial(screen,levels["Beginner"][0],200,200,800,100)
+    draw_board_initial(screen,level.board,200,200,800,100)
     draw_arrow(screen, (900, 350), (900, 450))
-    draw_board_objective(screen,levels["Beginner"][0],200,200,800,500)
-
-
-def calculating_loop(screen):
+    draw_board_objective(screen,level.final_board,200,200,800,500)
+    while True:
+        for event in pygame.event.get():
+            if event.type == QUIT:
+                pygame.quit()
+                sys.exit()
+            elif event.type == MOUSEBUTTONDOWN:   
+                if button_bfs.is_clicked(pygame.mouse.get_pos()):
+                    calculating_loop(screen,"BFS",level)
+                elif button_ids.is_clicked(pygame.mouse.get_pos()):
+                    calculating_loop(screen,"IDS",level)
+                elif button_greedy.is_clicked(pygame.mouse.get_pos()):
+                    heuristic_choice_loop(screen,"GreedySearch",level)
+                elif button_a_star.is_clicked(pygame.mouse.get_pos()):
+                    heuristic_choice_loop(screen,"A_Star_Search",level)
+        pygame.display.flip()
+        fpsClock.tick(fps)
+                
+def calculating_loop(screen,algorithm,level,heuristic=""):
     draw_calculating_screen(screen)
+    start = time.time()
+    if algorithm=="BFS":
+        breadth_first_search(level,check_win,get_moves)
+    elif algorithm=="IDS":
+        iterative_deepening_search(level,check_win,get_moves)
+    elif algorithm=="GreedySearch":
+        if heuristic=="h1":
+            greedy_search(level,h1)
+        elif heuristic=="h2":
+            greedy_search(level,h2)
+    elif algorithm=="A_Star_Search":
+        if heuristic=="h1":
+            a_star_search(level,h1)
+        elif heuristic=="h2":
+            a_star_search(level,h2)
+    end = time.time()
+    time_total = end-start
+    pygame.quit()
+    sys.exit()
+    
 
 
-def heuristic_choice_loop(screen):
+
+def heuristic_choice_loop(screen,algorithm,level):
     button_incorrect, button_manhattan = draw_heuristic_choice_screen(screen)
     heuristic_chosen = None
 
@@ -237,16 +271,12 @@ def heuristic_choice_loop(screen):
                 sys.exit()
             elif event.type == MOUSEBUTTONDOWN:
                 if button_incorrect.is_clicked(pygame.mouse.get_pos()):
-                    heuristic_chosen = "incorrect"
-                    print("Número de peças incorretas escolhido")
+                    calculating_loop(screen,algorithm,level,"h1")
                 elif button_manhattan.is_clicked(pygame.mouse.get_pos()):
-                    heuristic_chosen = "manhattan"
-                    print("Soma de distâncias de Manhattan escolhida")
+                    calculating_loop(screen,algorithm,level,"h2")
 
         pygame.display.flip()
         fpsClock.tick(fps)
-
-    return heuristic_chosen
 
 
 

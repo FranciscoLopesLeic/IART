@@ -152,8 +152,7 @@ def write_on_text(screen,text,color,x,y,font_size):
 def draw_board_initial(screen, level, screen_width, screen_height,initial_x,initial_y):
     # screen.fill((95, 158, 160))  # Cor de fundo para o tabuleiro
 
-    initial_state = level["initial_state"]
-
+    initial_state = level
     # Desenha o tabuleiro
     for row in range(len(initial_state)):
         for col in range(len(initial_state[row])):
@@ -173,7 +172,7 @@ def draw_board_initial(screen, level, screen_width, screen_height,initial_x,init
 
 
 def draw_board_objective(screen, level, screen_width, screen_height,initial_x,initial_y):
-    objective_state = level["objective_state"]
+    objective_state = level
     for row in range(len(objective_state)):
         for col in range(len(objective_state[row])):
             x = (col * (screen_width // len(objective_state[row]))+initial_x)
