@@ -78,6 +78,18 @@ def draw_options_menu(screen):
     draw_option_button(screen, "Credits", 200, 425)
     draw_option_button(screen, "Return", 200, 550)
 
+def draw_results_menu(screen,time_total,memory_total_kb,result):
+    screen.fill((95, 158, 160))  # Cor de fundo para o menu de opções
+
+    screen_width, screen_height = screen.get_size()
+    
+
+    pygame.draw.rect(screen, (0,0,0), pygame.Rect(30, 30, screen_width-60, screen_height-60))
+    write_on_text(screen,"Results",(255,255,255),screen_width/2,70,80)
+    write_on_text(screen,"Steps: "+str(len(result)),(255,255,255),screen_width/2,200,80)
+    write_on_text(screen,"Time: "+str(time_total),(255,255,255),screen_width/2,300,80)
+    write_on_text(screen,"Time: "+str(memory_total_kb)+" KB",(255,255,255),screen_width/2,400,80)
+    pygame.display.flip()
 
 def draw_option_button(screen, text, x, y):
     # Configurações para os botões de opção

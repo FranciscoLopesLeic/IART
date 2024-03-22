@@ -7,6 +7,8 @@ from levels import levels as level_select
 from gamelogic import *
 from levels import *
 from algorithms import *
+import tracemalloc
+
 pygame.init()
 
 fps = 60
@@ -237,25 +239,47 @@ def level_loop(screen,level):
                 
 def calculating_loop(screen,algorithm,level,heuristic=""):
     draw_calculating_screen(screen)
+    tracemalloc.start()
     start = time.time()
     if algorithm=="BFS":
-        breadth_first_search(level,check_win,get_moves)
+        start_snapshot = tracemalloc.take_snapshot()
+        goale = breadth_first_search(level,check_win,get_moves)
+        goal = goale.state.move_history
+        end_snapshot = tracemalloc.take_snapshot()
     elif algorithm=="IDS":
-        iterative_deepening_search(level,check_win,get_moves)
+        start_snapshot = tracemalloc.take_snapshot()
+        goale = iterative_deepening_search(level,check_win,get_moves)
+        goal = goale.state.move_history
+        end_snapshot = tracemalloc.take_snapshot()
     elif algorithm=="GreedySearch":
         if heuristic=="h1":
-            greedy_search(level,h1)
+            start_snapshot = tracemalloc.take_snapshot()
+            goal = greedy_search(level,h1)
+            end_snapshot = tracemalloc.take_snapshot()
         elif heuristic=="h2":
-            greedy_search(level,h2)
+            start_snapshot = tracemalloc.take_snapshot()
+            goal = greedy_search(level,h2)
+            end_snapshot = tracemalloc.take_snapshot()
     elif algorithm=="A_Star_Search":
         if heuristic=="h1":
-            a_star_search(level,h1)
+            start_snapshot = tracemalloc.take_snapshot()
+            goal = a_star_search(level,h1)
+            end_snapshot = tracemalloc.take_snapshot()
         elif heuristic=="h2":
-            a_star_search(level,h2)
+            start_snapshot = tracemalloc.take_snapshot()
+            goal = a_star_search(level,h2)
+            end_snapshot = tracemalloc.take_snapshot()
     end = time.time()
     time_total = end-start
-    pygame.quit()
-    sys.exit()
+    # Calculate the memory difference
+    memory_diff = end_snapshot.compare_to(start_snapshot, 'filename')
+    total_memory_usage = sum(stat.size for stat in memory_diff)
+    total_memory_usage_kb = total_memory_usage/1024
+    results_loop(screen,time_total,total_memory_usage_kb,goal)
+
+def results_loop(screen,time_total,memory_total_kb,result):
+    draw_results_menu(screen,time_total,memory_total_kb,result)
+
     
 
 
