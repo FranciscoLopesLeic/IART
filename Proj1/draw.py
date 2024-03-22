@@ -171,23 +171,27 @@ def draw_board_initial(screen, level, screen_width, screen_height,initial_x,init
                 pygame.draw.rect(screen, (0, 204, 0), (x, y, screen_width // len(initial_state[row]), screen_height // len(initial_state)))
 
 
-def draw_board_objective(screen, level, screen_width, screen_height,initial_x,initial_y):
-    objective_state = level
+def draw_board_objective(screen, level_actual, level_objective, screen_width, screen_height,initial_x,initial_y):
+    objective_state = level_objective
+    initial_state = level_actual
+
+    # Desenha o tabuleiro
     for row in range(len(objective_state)):
         for col in range(len(objective_state[row])):
             x = (col * (screen_width // len(objective_state[row]))+initial_x)
             y = (row * (screen_height // len(objective_state))+initial_y)
             #pygame.draw.rect(screen, (192, 192, 192), (x, y, screen_width // len(initial_state[row]), screen_height // len(initial_state)), 5)
 
-            # Desenha o conteúdo do tabuleiro
-            if objective_state[row][col] == Piece.NORMAL:
-                # Desenha um círculo para representar uma peça normal
-                pygame.draw.rect(screen, (51, 153, 255), (x, y, screen_width // len(objective_state[row]), screen_height // len(objective_state)))
+            # Verifica se o estado atual é diferente do objetivo
+            if initial_state[row][col] != objective_state[row][col]:
+                # Desenha o conteúdo do tabuleiro
+                if objective_state[row][col] == Piece.NORMAL:
+                    # Desenha um círculo para representar uma peça normal
+                    pygame.draw.rect(screen, (51, 153, 255), (x, y, screen_width // len(objective_state[row]), screen_height // len(objective_state)))
 
-
-            elif objective_state[row][col] == Piece.SPECIAL:
-                # Desenha um círculo para representar uma peça especial
-                pygame.draw.rect(screen, (0, 204, 0), (x, y, screen_width // len(objective_state[row]), screen_height // len(objective_state)))
+                elif objective_state[row][col] == Piece.SPECIAL:
+                    # Desenha um círculo para representar uma peça especial
+                    pygame.draw.rect(screen, (0, 204, 0), (x, y, screen_width // len(objective_state[row]), screen_height // len(objective_state)))
 
 
 def draw_arrow(screen, start_pos, end_pos):
