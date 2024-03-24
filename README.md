@@ -11,7 +11,8 @@ Este repositório contém o projeto desenvolvido pelo Grupo A1_29 para a discipl
 | Rui Silveira     | 202108878 | up202108878@up.pt    |
 
 ## Descrição do Projeto
-O projeto desenvolvido aborda os conceitos e técnicas estudados na disciplina de Inteligência Artificial, com ênfase em jogos e resolução de problemas. Para obter mais informações sobre o enunciado e os detalhes específicos do projeto, consulte a [página da disciplina IART](https://sigarra.up.pt/feup/pt/UCURR_GERAL.FICHA_UC_VIEW?pv_ocorrencia_id=520334).
+O projeto desenvolvido aborda os conceitos e técnicas estudados na disciplina de Inteligência Artificial, com ênfase em jogos e resolução de problemas. Ele consiste na implementação de um jogo de solitário para um jogador, onde diferentes métodos de busca são aplicados para resolver os níveis do jogo. O objetivo é comparar o desempenho desses métodos em termos de qualidade da solução, eficiência e uso de recursos.
+Para obter mais informações sobre o enunciado e os detalhes específicos do projeto, consulte a [página da disciplina IART](https://sigarra.up.pt/feup/pt/UCURR_GERAL.FICHA_UC_VIEW?pv_ocorrencia_id=520334).
 
 ## Estrutura do Repositório
 - **Exercises:** Exercícios práticos da cadeira.
@@ -22,11 +23,13 @@ O projeto desenvolvido aborda os conceitos e técnicas estudados na disciplina d
   - **gitignore:** Arquivo de configuração do Git para ignorar determinados arquivos e diretórios.
   - **algorithms.py:** Implementação de algoritmos relevantes para o projeto.
   - **context.pdf:** Ficheiro com o enunciado do Projeto.
+  - **display.py:** Módulo responsável pela exibição na interface gráfica.
   - **draw.py:** Módulo para desenho na interface gráfica.
-  - **utils.py:** Módulo com utilidades diversas.
+  - **game.py:** Módulo responsável pela lógica do jogo.
+  - **gamelogic.py:** Implementação da lógica do jogo.
   - **levels.py:** Definição dos níveis do jogo.
-  - **game.py:** Implementação da lógica do jogo.
   - **main.py:** Ponto de entrada principal do programa.
+  - **utils.py:** Módulo com utilidades diversas.
 - **Proj2:** Contém o código-fonte do segundo projeto.
 - **README.md:** Documentação principal do projeto.
 
