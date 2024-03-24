@@ -38,39 +38,14 @@ def breadth_first_search(initial_state, goal_state_func, operators_func):
                 node.add_child(newNode)
 
                 state_list.add(state)
-                i+=1
-                print(i)
+                #i+=1
+                #print(i)
             
                 # enqueue the child node
                 queue.append(newNode)
 
     return
 
-
-
-def depth_first_search(initial_state,goal_state_func,operators_func):
-    root = TreeNode(initial_state)
-    result = depth_first_search_rec(root,goal_state_func,operators_func,[])
-    if(result != None):
-        return result
-    return None
-
-def depth_first_search_rec(node, goal_state_func, operators_func, state_list):
-    if(check_win(node.state.board , node.state.final_board)):  # create the root node in the search tree
-        return node
-      
-    state_list.append(node.state)
-    for state in operators_func(node.state):
-        if(state not in state_list):
-            # create tree node with the new state
-            newNode = TreeNode(state)
-
-            node.add_child(newNode)
-
-            result = depth_first_search_rec(newNode,goal_state_func,operators_func,state_list)
-            if(result != None):
-                return result
-    return None
 
 
 def a_star_search(problem, heuristic):
@@ -84,7 +59,8 @@ def a_star_search(problem, heuristic):
 
 def depth_limited_search(initial_state, goal_state_func, operators_func, depth_limit):
     root = TreeNode(initial_state)
-    result = depth_limited_search_rec(root,goal_state_func,operators_func,[],depth_limit,0)
+    visited = set()
+    result = depth_limited_search_rec(root,goal_state_func,operators_func,visited,depth_limit,0)
     if(result != None):
         return result
     return None
@@ -93,11 +69,13 @@ def depth_limited_search_rec(node, goal_state_func, operators_func, state_list,d
     if(check_win(node.state.board , node.state.final_board)):  # create the root node in the search tree
         return node
     if current_depth == depth_limit:
+        # print(current_depth)
         return None
       
-    state_list.append(node.state)
+    state_list.add(node.state)
     for state in operators_func(node.state):
         if(state not in state_list):
+            # print(current_depth)
             # create tree node with the new state
             newNode = TreeNode(state)
 
@@ -117,6 +95,7 @@ def iterative_deepening_search(initial_state, goal_state_func, operators_func):
         if result is not None:
             return result
         depth_limit += 1
+        print(depth_limit)
 
 
 
@@ -238,17 +217,25 @@ def print_sequence(sequence):
             print(row)
         print()
 """
-goal = breadth_first_search(Cogito(levels["Beginner"][0]["initial_state"],levels["Beginner"][0]["objective_state"]), check_win,get_moves)
+goal = iterative_deepening_search(Cogito(levels["Beginner"][0]["initial_state"],levels["Beginner"][0]["objective_state"]), check_win,get_moves)
 print_sequence(goal)
-
-start = time.time()
-print_sequence(iterative_deepening_search(Cogito(
-                            [
+"""
+"""[
                                 [1, 0, 0, 1, 0],
                                 [1, 1, 0, 1, 1],
                                 [0, 1, 0, 0, 1],
                                 [0, 0, 1, 0, 0],
                                 [0, 0, 0, 0, 0]
+                            ]"""
+"""
+start = time.time()
+print_sequence(iterative_deepening_search(Cogito(
+                            [
+                                    [0, 0, 0, 0, 0],
+                                    [1, 1, 1, 1, 0],
+                                    [0, 1, 1, 0, 0],
+                                    [0, 1, 1, 1, 0],
+                                    [0, 0, 0, 0, 0]
                             ],[
                                     [0, 0, 0, 0, 0],
                                     [0, 1, 1, 1, 0],
@@ -259,6 +246,6 @@ print_sequence(iterative_deepening_search(Cogito(
 # print_sequence(a_star_search(Cogito(levels["Beginner"][0]["initial_state"],levels["Beginner"][0]["objective_state"]),h2))
 end = time.time()
 print(end - start)
+"""
 # print(check_win(Cogito([[0, 0, 0, 0, 0],[0, 1, 1, 1, 0],[0, 1, 1, 1, 0],[0, 1, 1, 1, 0],[0, 0, 0, 0, 0]],[[1, 0, 0, 1, 0],[1, 1, 0, 1, 1],[0, 1, 0, 0, 1],[0, 0, 1, 0, 0],[0, 0, 0, 0, 0]])))
 # print(check_win(Cogito([[0, 0, 0, 0, 0],[0, 1, 1, 1, 0],[0, 1, 1, 1, 0],[0, 1, 1, 1, 0],[0, 0, 0, 0, 0]],[[0, 0, 0, 0, 0],[0, 1, 1, 1, 0],[0, 1, 1, 1, 0],[0, 1, 1, 1, 0],[0, 0, 0, 0, 0]])))
-"""

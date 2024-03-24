@@ -85,10 +85,10 @@ def draw_results_menu(screen,time_total,memory_total_kb,result):
     
 
     pygame.draw.rect(screen, (0,0,0), pygame.Rect(30, 30, screen_width-60, screen_height-60))
-    write_on_text(screen,"Results",(255,255,255),screen_width/2,70,80)
-    write_on_text(screen,"Steps: "+str(len(result)),(255,255,255),screen_width/2,200,80)
-    write_on_text(screen,"Time: "+str(time_total),(255,255,255),screen_width/2,300,80)
-    write_on_text(screen,"Time: "+str(memory_total_kb)+" KB",(255,255,255),screen_width/2,400,80)
+    write_on_text(screen,"RESULTS",(255,255,255),screen_width/2,70,80)
+    write_on_text(screen,"Steps: "+str(len(result)),(255,255,255),screen_width/2,200,40)
+    write_on_text(screen,"Time: "+str(time_total)+" seconds.",(255,255,255),screen_width/2,250,40)
+    write_on_text(screen,"Memory: "+str(memory_total_kb)+" KB",(255,255,255),screen_width/2,300,40)
     pygame.display.flip()
 
 def draw_option_button(screen, text, x, y):
@@ -152,6 +152,13 @@ def draw_credits_screen(screen, screen_width):
         screen.blit(text, text_rect)
         y += 60
 
+def draw_menu_settings(screen):
+    screen.fill((95, 158, 160))
+    screen_width, screen_height = screen.get_size()
+    pygame.draw.rect(screen, (0,0,0), pygame.Rect(30, 30, screen_width-60, screen_height-60))
+    write_on_text(screen,"SETTINGS",(255,255,255),screen_width/2,70,80)
+    pygame.display.flip()
+
 
 def write_on_text(screen,text,color,x,y,font_size):
     directory = os.path.dirname(__file__)
@@ -183,7 +190,7 @@ def draw_board_initial(screen, level, screen_width, screen_height,initial_x,init
                 pygame.draw.rect(screen, (0, 204, 0), (x, y, screen_width // len(initial_state[row]), screen_height // len(initial_state)))
 
 
-def draw_board_objective(screen, level_actual, level_objective, screen_width, screen_height,initial_x,initial_y):
+def draw_board_change(screen, level_actual, level_objective, screen_width, screen_height,initial_x,initial_y):
     objective_state = level_objective
     initial_state = level_actual
 
@@ -205,6 +212,15 @@ def draw_board_objective(screen, level_actual, level_objective, screen_width, sc
                     # Desenha um círculo para representar uma peça especial
                     pygame.draw.rect(screen, (0, 204, 0), (x, y, screen_width // len(objective_state[row]), screen_height // len(objective_state)))
 
+def draw_steps_menu(screen):
+    screen.fill((95, 158, 160))  # Cor de fundo para o menu de opções
+
+    screen_width, screen_height = screen.get_size()
+    
+
+    pygame.draw.rect(screen, (0,0,0), pygame.Rect(30, 30, screen_width-60, screen_height-60))
+    write_on_text(screen,"STEP HISTORY:",(255,255,255),screen_width/2,70,80)
+    pygame.display.flip()
 
 def draw_arrow(screen, start_pos, end_pos):
     # Calcula a direção da seta
