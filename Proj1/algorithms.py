@@ -72,7 +72,6 @@ def depth_limited_search_rec(node, goal_state_func, operators_func, state_list,d
         # print(current_depth)
         return None
       
-    state_list.add(node.state)
     for state in operators_func(node.state):
         if(state not in state_list):
             # print(current_depth)
@@ -89,16 +88,62 @@ def depth_limited_search_rec(node, goal_state_func, operators_func, state_list,d
 
 
 def iterative_deepening_search(initial_state, goal_state_func, operators_func):
-    depth_limit = 0
+    depth_limit = 1
     while True:
         result = depth_limited_search(initial_state, goal_state_func, operators_func, depth_limit)
         if result is not None:
             return result
         depth_limit += 1
-        print(depth_limit)
 
+def a_star_search_limited_time(problem, heuristic):
+    # problem (NPuzzleState) - the initial state
+    # heuristic (function) - the heuristic function that takes a board (matrix), and returns an integer
 
+    
+    initial_state = problem
+    # this is very similar to greedy, the difference is that it takes into account the cost of the path so far
+    return greedy_search_limited_time(problem, lambda state: heuristic(state) + (heuristic(state) - heuristic(initial_state)))
 
+def greedy_search_limited_time(problem, heuristic):
+    # problem (NPuzzleState) - the initial state
+    # heuristic (function) - the heuristic function that takes a board (matrix), and returns an integer
+    # Mudar o NPuzzle
+    setattr(Cogito, "__lt__", lambda self, other: heuristic(self) < heuristic(other))
+    states = [problem]
+    visited = set() # to not visit the same state twice
+    current_state = problem
+    heap_states = []
+    start = time.time()
+
+    while states:
+        if check_win(current_state.board,current_state.final_board):
+            return current_state.move_history
+        end = time.time()
+        if (end - start) >= 1:
+            return current_state.move_history
+        visited.add(current_state)
+        children_states = get_moves(current_state)
+        for c_state in children_states:
+            heapq.heappush(heap_states,c_state)
+            
+        next_state = heapq.heappop(heap_states)
+
+        while next_state in visited:
+            if not heap_states:  # If no unvisited neighbors, break out of loop
+                next_state = None
+                break
+            next_state = heapq.heappop(heap_states)
+
+        
+        current_state = next_state
+            
+        # TO COMPLETE
+        # heapq.heappop(states) can be used to POP a state from the state list
+        # heapq.heappush(states, new_state) can be used to APPEND a new state to the state list
+        # ...
+        # ...
+        
+    return None
 
 def greedy_search(problem, heuristic):
     # problem (NPuzzleState) - the initial state
@@ -229,23 +274,10 @@ print_sequence(goal)
                             ]"""
 """
 start = time.time()
-print_sequence(iterative_deepening_search(Cogito(
-                            [
-                                    [0, 0, 0, 0, 0],
-                                    [1, 1, 1, 1, 0],
-                                    [0, 1, 1, 0, 0],
-                                    [0, 1, 1, 1, 0],
-                                    [0, 0, 0, 0, 0]
-                            ],[
-                                    [0, 0, 0, 0, 0],
-                                    [0, 1, 1, 1, 0],
-                                    [0, 1, 1, 1, 0],
-                                    [0, 1, 1, 1, 0],
-                                    [0, 0, 0, 0, 0]
-                                ]),check_win,get_moves).state.move_history)
-# print_sequence(a_star_search(Cogito(levels["Beginner"][0]["initial_state"],levels["Beginner"][0]["objective_state"]),h2))
+print_sequence(a_star_search_limited_time(Cogito(levels["Expert"][0]["initial_state"],levels["Expert"][0]["objective_state"]),h2))
 end = time.time()
 print(end - start)
-"""
+
 # print(check_win(Cogito([[0, 0, 0, 0, 0],[0, 1, 1, 1, 0],[0, 1, 1, 1, 0],[0, 1, 1, 1, 0],[0, 0, 0, 0, 0]],[[1, 0, 0, 1, 0],[1, 1, 0, 1, 1],[0, 1, 0, 0, 1],[0, 0, 1, 0, 0],[0, 0, 0, 0, 0]])))
 # print(check_win(Cogito([[0, 0, 0, 0, 0],[0, 1, 1, 1, 0],[0, 1, 1, 1, 0],[0, 1, 1, 1, 0],[0, 0, 0, 0, 0]],[[0, 0, 0, 0, 0],[0, 1, 1, 1, 0],[0, 1, 1, 1, 0],[0, 1, 1, 1, 0],[0, 0, 0, 0, 0]])))
+"""

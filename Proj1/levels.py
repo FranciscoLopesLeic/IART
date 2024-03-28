@@ -13,22 +13,19 @@ class Level:
 
 beginner_1 = {
     "initial_state": [
-        [Piece.NORMAL , Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL],
-        [Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL],
-        [Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL],
-        [Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL],
-        [Piece.SPECIAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL],
-        [Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL],
-        [Piece.NORMAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL],
+        [Piece.NORMAL,Piece.SPECIAL,Piece.NORMAL,Piece.NORMAL,Piece.NORMAL],
+        [Piece.NORMAL,Piece.SPECIAL,Piece.NORMAL,Piece.NORMAL,Piece.NORMAL],
+        [Piece.NORMAL,Piece.SPECIAL,Piece.SPECIAL,Piece.SPECIAL,Piece.NORMAL],
+        [Piece.NORMAL,Piece.SPECIAL,Piece.SPECIAL,Piece.SPECIAL,Piece.NORMAL],
+        [Piece.NORMAL,Piece.SPECIAL,Piece.NORMAL,Piece.NORMAL,Piece.NORMAL],
     ],
     "objective_state": [
-        [Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL],
-        [Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL],
-        [Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL, Piece.SPECIAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL],
-        [Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL, Piece.SPECIAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL],
-        [Piece.NORMAL, Piece.NORMAL, Piece.SPECIAL, Piece.SPECIAL, Piece.SPECIAL, Piece.NORMAL, Piece.NORMAL],
-        [Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL],
-        [Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL, Piece.NORMAL],
+        [Piece.NORMAL,Piece.NORMAL,Piece.NORMAL,Piece.NORMAL,Piece.NORMAL],
+        [Piece.NORMAL,Piece.SPECIAL,Piece.SPECIAL,Piece.SPECIAL,Piece.NORMAL],
+        [Piece.NORMAL,Piece.SPECIAL,Piece.SPECIAL,Piece.SPECIAL,Piece.NORMAL],
+        [Piece.NORMAL,Piece.SPECIAL,Piece.SPECIAL,Piece.SPECIAL,Piece.NORMAL],
+        [Piece.NORMAL,Piece.NORMAL,Piece.NORMAL,Piece.NORMAL,Piece.NORMAL],
+        
     ],
 }
 

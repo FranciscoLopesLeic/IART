@@ -8,6 +8,8 @@ from gamelogic import *
 from levels import *
 from algorithms import *
 import tracemalloc
+import threading
+from queue import Queue, Empty
 
 pygame.init()
 
@@ -82,6 +84,16 @@ def main_menu_loop(screen):
     button_play_human = Button((screen_width - button_options_width) // 2, y_button_options, 400, 100, "Start - Human", (0, 80, 255), (255, 255, 255), 60)
     button_play_human.draw(screen)
     button_quit.draw(screen)
+    """
+    left_arrow = ClickableArrow(screen,100,100,50,50,"left")
+    left_arrow.draw()
+    right_arrow = ClickableArrow(screen,100,200,50,50,"right")
+    right_arrow.draw()
+    down_arrow = ClickableArrow(screen,100,300,50,50,"down")
+    down_arrow.draw()
+    up_arrow = ClickableArrow(screen,100,400,50,50,"up")
+    up_arrow.draw()
+    """
     while True:
     # Draw Main Menu
         for event in pygame.event.get():
@@ -108,7 +120,8 @@ def main_menu_loop(screen):
                 #    current_state = GameState.OPTIONS_MENU
                     # Adicione outros elementos do menu de opções conforme necessário
                     # Exemplo: Botões para ajustar configurações
-                    
+                #elif left_arrow.is_clicked(pygame.mouse.get_pos()):
+                #    print("yes")
                 elif button_play_human.is_clicked(pygame.mouse.get_pos()):
                     level_menu_human_loop(screen)
                 elif button_quit.is_clicked(pygame.mouse.get_pos()):
@@ -139,7 +152,178 @@ def level_human_loop(screen,level):
     write_on_text(screen,"Tip:",(255,255,255),100,200,100)
     checkbox = CheckBox(200,150,100,100,(255,255,255),(128,128,128),(0,0,0),10)
     checkbox.draw(screen)
-    #button_continue = Button()
+    button_continue = Button(50,screen_height-150,300,100,"Continue!",(0,0,255),(255,255,255),50)
+    button_continue.draw(screen)
+    draw_board_initial(screen,level.board,200,200,800,100)
+    draw_arrow(screen, (900, 350), (900, 450))
+    draw_board_initial(screen, level.final_board, 200,200,800,500)
+    pygame.display.flip()
+    tip = False
+    while True:
+    # Draw Main Menu
+        for event in pygame.event.get():
+            if event.type == QUIT:
+                pygame.quit()
+                sys.exit()
+            elif event.type == MOUSEBUTTONDOWN:   
+                if checkbox.is_clicked(screen,pygame.mouse.get_pos()):
+                    if(tip): 
+                        tip = False
+                    else: 
+                        tip = True
+                    print("aqui")
+                elif button_continue.is_clicked(pygame.mouse.get_pos()):
+                    game_human_loop(screen,level,tip)
+                    
+        pygame.display.flip()
+        fpsClock.tick(fps)
+
+def clear_queue(queue):
+    try:
+        while True:
+            queue.get_nowait()
+    except Empty:
+        pass  # Queue is empty
+
+def seconds_to_MM_SS(seconds):
+    # Convert seconds to minutes and seconds
+    minutes = int(seconds // 60)
+    seconds = int(seconds % 60)
+    
+    # Format minutes and seconds as MM:SS
+    time_str = "{:02d}:{:02d}".format(minutes, seconds)
+    
+    return time_str
+
+def game_human_loop(screen,level,tip):
+    draw_game_human_menu(screen)
+    button_main = Button(0, screen_height-100, 200, 100, "Main Menu", (255, 0, 0), (255, 255, 255), 50)
+    button_main.draw(screen)
+    result_queue = Queue()
+    draw_board_initial(screen,level.board,400,400,(screen_width/2)-200,(screen_height/2)-150)
+    draw_board_initial(screen,level.final_board,100,100,screen_width-150,screen_height-150)
+    write_on_text(screen,"Objective:",(255,255,255),screen_width-100,screen_height-180,35)
+    up = [0]*len(level.board)
+    down = [0]*len(level.board)
+    left = [0]*len(level.board)
+    right = [0]*len(level.board)
+    unit = (400 / len(level.board))
+    def run_concurrent(level,h2):
+        print("b")
+        result = a_star_search_limited_time(level,h2)
+        result_queue.put(result)
+    initial_x_horizontal = (screen_width/2)-200 + ((400 / len(level.board))/2)
+    initial_y_vertical = (screen_height/2)-152 + ((400 / len(level.board))/2)
+    for i in range(0,len(level.board)):
+        up[i] = ClickableArrow(screen,initial_x_horizontal+ ((400 / len(level.board))*i),(screen_height/2)-210,unit-10,50,"up")
+        up[i].draw()
+    for i in range(0,len(level.board)):
+        down[i] = ClickableArrow(screen,initial_x_horizontal+ ((400 / len(level.board))*i),(screen_height/2)+305,unit-10,50,"down")
+        down[i].draw()
+    for i in range(0,len(level.board)):
+        left[i] = ClickableArrow(screen,(screen_width/2)-260,initial_y_vertical+ ((400 / len(level.board))*i),50,unit-10,"left")
+        left[i].draw()
+    for i in range(0,len(level.board)):
+        right[i] = ClickableArrow(screen,(screen_width/2)+255,initial_y_vertical+ ((400 / len(level.board))*i),50,unit-10,"right")
+        right[i].draw()
+    if tip:
+        write_on_text(screen,"Tip Board:",(255,255,255),screen_width-100,180,35)
+    write_on_text(screen,"Step number:",(255,255,255),200,200,50)
+    write_on_text(screen,"0",(255,255,255),350,200,65)
+    write_on_text(screen,"Time:",(255,255,255),180,300,50)
+    write_on_text(screen,seconds_to_MM_SS(0),(255,255,255),300,300,65)
+    start = time.time()
+    step = 0
+    change = False
+    while True:
+    # Draw Main Menu
+        for event in pygame.event.get():
+            if event.type == QUIT:
+                pygame.quit()
+                sys.exit()
+            elif event.type == MOUSEBUTTONDOWN:
+                pos = pygame.mouse.get_pos()   
+                for i in range(0,len(level.board)):
+                    if up[i].is_clicked(pos):
+                        new_board = level.move(Direction.UP,Line.COLUMN,i)
+                        old_board = level.board
+                        level = Cogito(new_board,level.final_board,level.move_history)
+                        draw_board_change(screen,old_board,new_board,400,400,(screen_width/2)-200,(screen_height/2)-150)
+                        step += 1
+                        change = True
+                        pygame.draw.rect(screen,(0,0,0),(screen_width-150,200,100,100))
+                        if tip:
+                            threading.Thread(target=run_concurrent, args=(level,h2)).start()
+                        pygame.draw.rect(screen,(0,0,0),(315,150,100,90))
+                        write_on_text(screen,str(step),(255,255,255),355,200,65)
+                    elif down[i].is_clicked(pos):
+                        new_board = level.move(Direction.DOWN,Line.COLUMN,i)
+                        old_board = level.board
+                        level = Cogito(new_board,level.final_board,level.move_history)
+                        draw_board_change(screen,old_board,new_board,400,400,(screen_width/2)-200,(screen_height/2)-150)
+                        step += 1
+                        change = True
+                        if tip:
+                            threading.Thread(target=run_concurrent, args=(level,h2)).start()
+                        pygame.draw.rect(screen,(0,0,0),(screen_width-150,200,100,100))
+                        pygame.draw.rect(screen,(0,0,0),(315,150,100,90))
+                        write_on_text(screen,str(step),(255,255,255),355,200,65)
+                    elif left[i].is_clicked(pos):
+                        new_board = level.move(Direction.LEFT,Line.ROW,i)
+                        old_board = level.board
+                        level = Cogito(new_board,level.final_board,level.move_history)
+                        draw_board_change(screen,old_board,new_board,400,400,(screen_width/2)-200,(screen_height/2)-150)
+                        step += 1
+                        if tip:
+                            threading.Thread(target=run_concurrent, args=(level,h2)).start()
+                        pygame.draw.rect(screen,(0,0,0),(screen_width-150,200,100,100))
+                        pygame.draw.rect(screen,(0,0,0),(315,150,100,90))
+                        write_on_text(screen,str(step),(255,255,255),355,200,65)
+                        change = True
+                    elif right[i].is_clicked(pos):
+                        new_board = level.move(Direction.RIGHT,Line.ROW,i)
+                        old_board = level.board
+                        level = Cogito(new_board,level.final_board,level.move_history)
+                        draw_board_change(screen,old_board,new_board,400,400,(screen_width/2)-200,(screen_height/2)-150)
+                        step += 1
+                        change = True
+                        if tip:
+                            threading.Thread(target=run_concurrent, args=(level,h2)).start()
+                        pygame.draw.rect(screen,(0,0,0),(screen_width-150,200,100,100))
+                        pygame.draw.rect(screen,(0,0,0),(315,150,100,90))
+                        write_on_text(screen,str(step),(255,255,255),355,200,65)
+                if button_main.is_clicked(pos):
+                    main_menu_loop(screen)
+        if change:
+            if check_win(level.board,level.final_board):
+                pygame.draw.rect(screen,(0,255,0),((screen_width/2)-400,(screen_height/2)-200,800,400))
+                write_on_text(screen,"YOU WON!",(255,255,255),screen_width/2,screen_height/2,200)
+                pygame.display.flip()
+                time.sleep(3.0)
+                main_menu_loop(screen)
+            """else:
+                if tip:
+                    tip_calculate = True
+        if tip_calculate:
+            pool = multiprocessing.Pool()
+            print("pqp")
+            tip_calculate = False
+            result = pool.apply_async(a_star_search_limited_time, args=(level,h2,))
+            value = result.get()
+            draw_board_initial(screen,value,100,100,screen_width-150,250)"""
+        if not result_queue.empty():
+            result = result_queue.get()
+            resultinho = result[len(result)-1]
+            draw_board_initial(screen,resultinho,100,100,screen_width-150,200)
+            clear_queue(result_queue)
+            pygame.display.flip()
+            print("A")
+        pygame.draw.rect(screen,(0,0,0),(230,270,140,70))
+        write_on_text(screen,seconds_to_MM_SS(time.time()-start),(255,255,255),300,300,65)
+        pygame.display.flip()
+        fpsClock.tick(fps)
+    
+
 
 def level_menu_human_loop(screen):
     draw_level_select_menu(screen)
@@ -151,7 +335,8 @@ def level_menu_human_loop(screen):
     levels = [0]*9
     for i in range(0,3):
         if i == 0:
-            write_on_text(screen,"Easy",(255,255,255),x+50,min_y-20,50)
+            write_on_text(screen,"Super Easy",(255,255,255),x+50,min_y-20,50)
+            write_on_text(screen,"Easy",(255,255,255),x+50,min_y+150,50)
         elif i == 1:
             write_on_text(screen,"Medium",(255,255,255),x+50,min_y-20,50)
         elif i == 2:
@@ -231,7 +416,8 @@ def level_menu_loop(screen):
     levels = [0]*9
     for i in range(0,3):
         if i == 0:
-            write_on_text(screen,"Easy",(255,255,255),x+50,min_y-20,50)
+            write_on_text(screen,"Super Easy",(255,255,255),x+50,min_y-20,50)
+            write_on_text(screen,"Easy",(255,255,255),x+50,min_y+150,50)
         elif i == 1:
             write_on_text(screen,"Medium",(255,255,255),x+50,min_y-20,50)
         elif i == 2:
@@ -320,36 +506,48 @@ def level_loop(screen,level):
 def calculating_loop(screen,algorithm,level,heuristic=""):
     draw_calculating_screen(screen)
     tracemalloc.start()
-    start = time.time()
+    start = 0
+    end = 0
     if algorithm=="BFS":
         start_snapshot = tracemalloc.take_snapshot()
+        start = time.time()
         goale = breadth_first_search(level,check_win,get_moves)
+        end = time.time()
         goal = goale.state.move_history
         end_snapshot = tracemalloc.take_snapshot()
     elif algorithm=="IDS":
         start_snapshot = tracemalloc.take_snapshot()
+        start = time.time()
         goale = iterative_deepening_search(level,check_win,get_moves)
+        end = time.time()
         goal = goale.state.move_history
         end_snapshot = tracemalloc.take_snapshot()
     elif algorithm=="GreedySearch":
         if heuristic=="h1":
             start_snapshot = tracemalloc.take_snapshot()
+            start = time.time()
             goal = greedy_search(level,h1)
+            end = time.time()
             end_snapshot = tracemalloc.take_snapshot()
         elif heuristic=="h2":
             start_snapshot = tracemalloc.take_snapshot()
+            start = time.time()
             goal = greedy_search(level,h2)
+            end = time.time()
             end_snapshot = tracemalloc.take_snapshot()
     elif algorithm=="A_Star_Search":
         if heuristic=="h1":
             start_snapshot = tracemalloc.take_snapshot()
+            start = time.time()
             goal = a_star_search(level,h1)
+            end = time.time()
             end_snapshot = tracemalloc.take_snapshot()
         elif heuristic=="h2":
             start_snapshot = tracemalloc.take_snapshot()
+            start = time.time()
             goal = a_star_search(level,h2)
+            end = time.time()
             end_snapshot = tracemalloc.take_snapshot()
-    end = time.time()
     time_total = end-start
     # Calculate the memory difference
     memory_diff = end_snapshot.compare_to(start_snapshot, 'filename')
