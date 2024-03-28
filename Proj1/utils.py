@@ -61,7 +61,59 @@ class CheckBox:
             pygame.display.flip()
             return True
         else:
-            return False,
+            return False
 
+class ClickableArrow:
+    def __init__(self, screen, x, y, width, height, direction):
+        self.screen = screen
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.direction = direction
+        self.color = (0,0, 255)
+    
+    def draw(self):
+        if self.direction == "right":
+            pygame.draw.polygon(self.screen, self.color, [
+                (self.x, self.y),
+                (self.x - self.width, self.y - self.height // 2),
+                (self.x - self.width, self.y + self.height // 2)
+            ])
+        elif self.direction == "left":
+            pygame.draw.polygon(self.screen, self.color, [
+                (self.x, self.y),
+                (self.x + self.width, self.y - self.height // 2),
+                (self.x + self.width, self.y + self.height // 2)
+            ])
+        elif self.direction == "up":
+            pygame.draw.polygon(self.screen, self.color, [
+                (self.x, self.y),
+                (self.x - self.width // 2, self.y + self.height),
+                (self.x + self.width // 2, self.y + self.height)
+            ])
+        elif self.direction == "down":
+            pygame.draw.polygon(self.screen, self.color, [
+                (self.x, self.y),
+                (self.x - self.width // 2, self.y - self.height),
+                (self.x + self.width // 2, self.y - self.height)
+            ])
+    
+    def is_clicked(self, mouse_pos):
+        if self.direction in ["right", "left"]:
+            if self.direction == "right":
+                if self.x - self.width <= mouse_pos[0] <= self.x and self.y - self.height // 2 <= mouse_pos[1] <= self.y + self.height // 2:
+                    return True
+            elif self.direction == "left":
+                if self.x <= mouse_pos[0] <= self.x + self.width and self.y - self.height // 2 <= mouse_pos[1] <= self.y + self.height // 2:
+                    return True
+        elif self.direction in ["up", "down"]:
+            if self.direction == "up":
+                if self.x - self.width // 2 <= mouse_pos[0] <= self.x + self.width // 2 and self.y <= mouse_pos[1] <= self.y + self.height:
+                    return True
+            elif self.direction == "down":
+                if self.x - self.width // 2 <= mouse_pos[0] <= self.x + self.width // 2 and self.y - self.height <= mouse_pos[1] <= self.y:
+                    return True
+        return False
 
 

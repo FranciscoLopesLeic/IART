@@ -108,8 +108,6 @@ def draw_calculating_screen(screen):
     screen.blit(text, text_rect)
     pygame.display.flip()
 
-
-
 def draw_heuristic_choice_screen(screen):
     screen.fill((95, 158, 160)) 
 
@@ -189,6 +187,15 @@ def draw_board_initial(screen, level, screen_width, screen_height,initial_x,init
                 # Desenha um círculo para representar uma peça especial
                 pygame.draw.rect(screen, (0, 204, 0), (x, y, screen_width // len(initial_state[row]), screen_height // len(initial_state)))
 
+def draw_game_human_menu(screen):
+    screen.fill((95, 158, 160))  # Cor de fundo para o menu de opções
+
+    screen_width, screen_height = screen.get_size()
+    
+
+    pygame.draw.rect(screen, (0,0,0), pygame.Rect(30, 30, screen_width-60, screen_height-60))
+    write_on_text(screen,"Have Fun!",(255,255,255),screen_width/2,70,80)
+    pygame.display.flip()
 
 def draw_board_change(screen, level_actual, level_objective, screen_width, screen_height,initial_x,initial_y):
     objective_state = level_objective
