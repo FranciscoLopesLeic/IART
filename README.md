@@ -36,3 +36,22 @@ Para obter mais informações sobre o enunciado e os detalhes específicos do pr
 ## Instruções de Execução
 1. Certifique-se de ter o Python e o Pygame instalados em seu sistema.
 2. Execute o arquivo `main.py` para iniciar o programa.
+
+## Jogo
+O jogo [Cogito] é um jogo de solitário para um jogador. O jogo começa com um tabuleiro baralhado e o objetivo é conseguir formar um quadrado ao centro conforme o pedido.
+
+## Setup
+Para executar o jogo é necessario ter algumas livrarias do python instaladas. Para tal basta executar o seguinte comando:
+```bash
+pip install pygame
+pip install numpy
+```
+
+## Dar início ao jogo
+Para dar início ao jogo basta executar o seguinte comando dentro do dirétorio do "Proj1":
+```bash
+python3 main.py
+```
+
+
+
