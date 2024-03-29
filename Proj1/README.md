@@ -5,25 +5,25 @@ O jogador tem a opção de jogar a versão humana e a opção de inteligência a
 ## Screenshots
 
 Menu inicial do jogo:
-![Main Menu](Proj1/images/MainMenu.png)
+![Main Menu](images/MainMenu.png)
 
 Menu de seleção de níveis:
-![Levels](Proj1/images/Levels.png)
+![Levels](images/Levels.png)
 
 Menu do objetivo do nivel:
-![Objetivo](Proj1/images/Objetivo.png)
+![Objetivo](images/Objetivo.png)
 
 Jogo:
-![Jogo](Proj1/images/Jogo.png)
+![Jogo](images/Jogo.png)
 
 Escolha de algoritmos de busca:
-![Algoritmos](Proj1/images/Algoritmos.png)
+![Algoritmos](images/Algoritmos.png)
 
 Tempo de busca
-![Tempos](Proj1/images/Tempos.png)
+![Tempos](images/Tempos.png)
 
 Passo a passo da resolução do tabuleiro:
-![AIMoves](Proj1/images/AIMoves.png)
+![AIMoves](images/AIMoves.png)
 
 
 
